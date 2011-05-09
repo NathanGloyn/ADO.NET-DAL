@@ -3,7 +3,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Collections.Generic;
-using Common.DataAccessLayer.SqlServer;
+using DataAccessLayer.SqlServer;
 using NUnit.Framework;
 using System.Xml;
 using UnitTest.Database;

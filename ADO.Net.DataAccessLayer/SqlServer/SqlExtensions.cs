@@ -1,8 +1,7 @@
-﻿using System;
-using System.Xml;
+﻿using System.Xml;
 using System.Data.SqlClient;
 
-namespace Common.DataAccessLayer
+namespace DataAccessLayer.SqlServer
 {
     /// <summary>
     /// BH custom extenstions to SqlCommand for ease of use

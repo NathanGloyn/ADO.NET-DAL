@@ -8,8 +8,8 @@
     <ProjectGuid>{3C792FE7-83CD-41C1-8B21-D72EECBB318D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BH.Common.DataAccessLayer</RootNamespace>
-    <AssemblyName>BH.Common.DataAccessLayer</AssemblyName>
+    <RootNamespace>DataAccessLayer</RootNamespace>
+    <AssemblyName>ADO.Net.DataAccessLayer</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -75,6 +75,8 @@
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IParameterCreation.cs" />
     <Compile Include="Interfaces\ITransactions.cs" />
+    <Compile Include="Interfaces\ISqlCommands.cs" />
+    <Compile Include="SqlServer\SqlCommands.cs" />
     <Compile Include="SqlServer\SqlDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServer\SqlExtensions.cs" />

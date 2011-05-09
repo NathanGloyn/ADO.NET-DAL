@@ -1,9 +1,8 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.Common;
 using System.Xml;
 
-namespace Common.DataAccessLayer
+namespace DataAccessLayer.Interfaces
 {
     /// <summary>
     /// Standard interface for data access using stored procedures

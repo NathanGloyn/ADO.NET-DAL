@@ -1,6 +1,7 @@
-﻿using System;
+﻿using DataAccessLayer.Interfaces;
+using DataAccessLayer.SqlServer;
 
-namespace Common.DataAccessLayer
+namespace DataAccessLayer
 {
     /// <summary>
     /// Class encapsulating construction of IDataAccess Types
@@ -16,7 +17,7 @@ namespace Common.DataAccessLayer
         /// where additional data access can be created with out having to refactor a lot of code</remarks>
         public static IDataAccess Create(string config)
         {
-            return new SqlDataAccess(config,null);
+            return new SqlDataAccess(config,new SqlParameterFactory());
         }
     }
 }

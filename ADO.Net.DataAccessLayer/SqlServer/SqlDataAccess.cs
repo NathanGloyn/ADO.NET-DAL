@@ -1,30 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Reflection;
 using System.Data;
 using System.Xml;
+using DataAccessLayer.Interfaces;
 
-namespace Common.DataAccessLayer
+namespace DataAccessLayer.SqlServer
 {
     /// <summary>
     /// Base class used by all concrete classes in DataAccessLayer
     /// </summary>
-    public class SqlDataAccess : IDataAccess,ITransactions,IParmeterCreation
+    public class SqlDataAccess : IDataAccess,ITransactions,IParameterCreation
     {
         private SqlConnection databaseConnection = null;
         private DbTransaction currentTransaction = null;
         private string connectionString;
-        private readonly IParmeterCreation _parameterFactory;
+        private readonly IParameterCreation _parameterFactory;
 
         /// <summary>
         /// Allows child classes to pass the connection string to be used for the
         /// connection during construction
         /// </summary>
         /// <param name="connectionString"></param>
-        public SqlDataAccess(string connectionString, IParmeterCreation parameterFactory)
+        public SqlDataAccess(string connectionString, IParameterCreation parameterFactory)
         {
             if (parameterFactory == null) throw new ArgumentNullException("parameterFactory");
             this.connectionString = connectionString;
@@ -152,22 +150,12 @@ namespace Common.DataAccessLayer
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-            // Find the command to execute
-            object data = null;
+            SqlCommands commands = CreateCommands();
 
-            SafelyOpenConnection();
-            SqlCommand cmdScalar = BuildCommand(storedProcedureName, parameters);
+            object data = commands.ExecuteScalar(out cmd, storedProcedureName, parameters);
 
-            try
-            {
-                data = cmdScalar.ExecuteScalar();
-            }
-            finally
-            {
-                SafelyCloseConnection();
-            }
+            SafelyCloseConnection();
 
-            cmd = cmdScalar;
             return data;
         }
 
@@ -422,6 +410,12 @@ namespace Common.DataAccessLayer
                 newCommand.Parameters.AddRange(parameters);
 
             return newCommand;
+        }
+
+        private SqlCommands CreateCommands()
+        {
+            SafelyOpenConnection();
+            return new SqlCommands(databaseConnection, currentTransaction, CommandTimeOut);
         }
 
         public DbParameter Create(string paramName, DbType paramType, object value, ParameterDirection direction)

@@ -2,10 +2,11 @@
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using DataAccessLayer.Interfaces;
 
-namespace Common.DataAccessLayer.SqlServer
+namespace DataAccessLayer.SqlServer
 {
-    public class SqlParameterFactory:IParmeterCreation
+    public class SqlParameterFactory:IParameterCreation
     {
         /// <summary>
         /// Converts a generic DbType into an SqlDbType

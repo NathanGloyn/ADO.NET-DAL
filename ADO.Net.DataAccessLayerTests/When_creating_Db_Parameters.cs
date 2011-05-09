@@ -1,9 +1,7 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using Common.DataAccessLayer;
-using Common.DataAccessLayer.SqlServer;
+using DataAccessLayer.SqlServer;
 using NUnit.Framework;
 
 namespace ADO.Net.DataAccessLayerTests

@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Xml;
 
-namespace Common.DataAccessLayer
+namespace DataAccessLayer.SqlServer
 {
     /// <summary>
     /// Proxy class over XmlReader to allow control over the underlying SqlConnection

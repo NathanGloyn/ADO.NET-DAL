@@ -1,9 +1,9 @@
 ﻿using System.Data;
 using System.Data.Common;
 
-namespace Common.DataAccessLayer
+namespace DataAccessLayer.Interfaces
 {
-    public interface IParmeterCreation
+    public interface IParameterCreation
     {
         /// <summary>
         /// Creates a SqlParameter
