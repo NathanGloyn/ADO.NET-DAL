@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -7,19 +8,18 @@ using DataAccessLayer.Interfaces;
 
 namespace DataAccessLayer.SqlServer
 {
-    public class SqlCommands : ISqlCommands
+    public class Commands : ICommands
     {
         private readonly SqlConnection _currentConnection;
         private readonly SqlTransaction _currentTransaction;
         private readonly int _commandTimeOut;
 
 
-        public SqlCommands(SqlConnection currentConnection, SqlTransaction currentTransaction, int commandTimeOut)
+        public Commands(SqlConnection currentConnection, DbTransaction currentTransaction, int commandTimeOut)
         {
             if (currentConnection == null) throw new ArgumentNullException("currentConnection");
-            if (currentTransaction == null) throw new ArgumentNullException("currentTransaction");
             _currentConnection = currentConnection;
-            _currentTransaction = currentTransaction;
+            _currentTransaction = currentTransaction as SqlTransaction;
             _commandTimeOut = commandTimeOut;
         }
 
@@ -39,19 +39,9 @@ namespace DataAccessLayer.SqlServer
         /// <param name="parameters">DbParameter colleciton to use in executing</param>
         public int ExecuteNonQuery(string commandText, params DbParameter[] parameters)
         {
-            DbCommand cmd =null;
-            int rowsAffected = 0;
-            try
-            {
-                rowsAffected = ExecuteNonQuery(out cmd, commandText, parameters);
-            }
-            finally
-            {
-                cmd.Parameters.Clear();
-                cmd.Dispose();
-            }
 
-            return rowsAffected;
+            return Execute(x => x.ExecuteNonQuery(),  commandText, parameters);
+
         }
 
         /// <summary>
@@ -63,15 +53,7 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DbCommand containing the command executed</returns>
         public int ExecuteNonQuery(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
-            int rowsAffected = 0;
-
-            SqlCommand cmdExecute = BuildCommand(commandText, parameters);
-
-            rowsAffected = cmdExecute.ExecuteNonQuery();
-
-            cmd = cmdExecute;
-
-            return rowsAffected;
+            return Execute(x => x.ExecuteNonQuery(), out cmd, commandText, parameters);
         }
 
         /// <summary>
@@ -92,12 +74,7 @@ namespace DataAccessLayer.SqlServer
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(string commandText, params DbParameter[] parameters)
         {
-            DbCommand cmd;
-            object result = ExecuteScalar(out cmd, commandText, parameters);
-            cmd.Parameters.Clear();
-            cmd.Dispose();
-
-            return result;
+            return Execute(x => x.ExecuteScalar(), commandText, parameters);
         }
 
         /// <summary>
@@ -109,15 +86,7 @@ namespace DataAccessLayer.SqlServer
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
-            // Find the command to execute
-            object data = null;
-
-            SqlCommand cmdScalar = BuildCommand(commandText, parameters);
-
-            data = cmdScalar.ExecuteScalar();
-            
-            cmd = cmdScalar;
-            return data;
+            return Execute(x => x.ExecuteScalar(), out cmd, commandText, parameters); 
         }
 
         /// <summary>
@@ -322,6 +291,34 @@ namespace DataAccessLayer.SqlServer
                 newCommand.Parameters.AddRange(parameters);
 
             return newCommand;
+        }
+
+        private T Execute<T>(Func<SqlCommand, T> commandToExecute, string commandText, params DbParameter[] parameters)
+        {
+            DbCommand cmd = null;
+            T result;
+            try
+            {
+                result = Execute(commandToExecute, out cmd, commandText, parameters);
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Dispose();
+            }
+
+            return result;            
+        }
+
+        private T Execute<T>(Func<SqlCommand, T> commandToExecute, out DbCommand cmd, string commandText, params DbParameter[] parameters)
+        {
+            SqlCommand toExecute = BuildCommand(commandText, parameters);
+
+            object result = commandToExecute(toExecute);
+
+            cmd = toExecute;
+
+            return (T) result;
         }
 
     }

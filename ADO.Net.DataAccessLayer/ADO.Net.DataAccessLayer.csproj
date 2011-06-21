@@ -12,10 +12,14 @@
     <AssemblyName>ADO.Net.DataAccessLayer</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -74,13 +78,14 @@
     <Compile Include="DataAccessFactory.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IParameterCreation.cs" />
-    <Compile Include="Interfaces\ITransactions.cs" />
-    <Compile Include="Interfaces\ISqlCommands.cs" />
-    <Compile Include="SqlServer\SqlCommands.cs" />
-    <Compile Include="SqlServer\SqlDataAccess.cs" />
+    <Compile Include="Interfaces\ITransactionControl.cs" />
+    <Compile Include="Interfaces\ICommands.cs" />
+    <Compile Include="SqlServer\Commands.cs" />
+    <Compile Include="SqlServer\DataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServer\SqlExtensions.cs" />
     <Compile Include="SqlServer\SqlParameterFactory.cs" />
+    <Compile Include="SqlServer\SqlTransactionControl.cs" />
     <Compile Include="SqlServer\SqlXmlReader.cs" />
   </ItemGroup>
   <ItemGroup>

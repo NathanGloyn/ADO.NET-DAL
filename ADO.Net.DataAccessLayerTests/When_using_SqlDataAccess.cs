@@ -3,12 +3,14 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Collections.Generic;
+using DataAccessLayer;
+using DataAccessLayer.Interfaces;
 using DataAccessLayer.SqlServer;
 using NUnit.Framework;
 using System.Xml;
 using UnitTest.Database;
 
-namespace Common.DataAccessLayer
+namespace ADO.Net.DataAccessLayerTests
 {  
     /// <summary>
     ///This is a test class for SqlDataAccessTest and is intended
@@ -21,7 +23,7 @@ namespace Common.DataAccessLayer
         private static DatabaseSupport dbHelper;
 
         private SqlParameterFactory _parameterFactory;
-        private SqlDataAccess _sqlDataAccess;
+        private DataAccess _dataAccess;
 
         [TestFixtureSetUp]
         public void InitializeTests()
@@ -38,7 +40,7 @@ namespace Common.DataAccessLayer
         public void Setup()
         {
             dbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\03_insert_test_data.sql");
-            _sqlDataAccess = new SqlDataAccess(ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString, _parameterFactory);
+            _dataAccess = new DataAccess(ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString, _parameterFactory);
         }
 
         /// <summary>
@@ -47,18 +49,18 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_rollbackTransaction_successfully()
         {
-            _sqlDataAccess.BeginTransaction();
+            _dataAccess.Transactions.BeginTransaction();
 
-            _sqlDataAccess.ExecuteNonQuery("AddToTestTable",
-                _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "RollbackTest"),
-                _sqlDataAccess.Create("@TestValue", DbType.AnsiString, "ROLLBACK"));
+            _dataAccess.ExecuteNonQuery("AddToTestTable",
+                _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "RollbackTest"),
+                _dataAccess.ParameterFactory.Create("@TestValue", DbType.AnsiString, "ROLLBACK"));
 
-            string testValue = (string)_sqlDataAccess.ExecuteScalar("SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "RollbackTest"));
+            string testValue = (string)_dataAccess.ExecuteScalar("SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "RollbackTest"));
             Assert.AreEqual(testValue, "ROLLBACK");
 
-            _sqlDataAccess.RollbackTransaction();
+            _dataAccess.Transactions.RollbackTransaction();
             
-            testValue = (string)_sqlDataAccess.ExecuteScalar("SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "RollbackTest"));
+            testValue = (string)_dataAccess.ExecuteScalar("SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "RollbackTest"));
             Assert.IsNull(testValue);
         }
 
@@ -68,18 +70,18 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_commit_transaction_successfully()
         {
-            _sqlDataAccess.BeginTransaction();
+            _dataAccess.Transactions.BeginTransaction();
 
-            _sqlDataAccess.ExecuteNonQuery("AddToTestTable",
-                _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "RollbackTest"),
-                _sqlDataAccess.Create("@TestValue", DbType.AnsiString, "ROLLBACK"));
+            _dataAccess.ExecuteNonQuery("AddToTestTable",
+                _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "RollbackTest"),
+                _dataAccess.ParameterFactory.Create("@TestValue", DbType.AnsiString, "ROLLBACK"));
 
-            string result = (string)_sqlDataAccess.ExecuteScalar("SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "RollbackTest"));
+            string result = (string)_dataAccess.ExecuteScalar("SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "RollbackTest"));
             Assert.AreEqual("ROLLBACK", result);
 
-            _sqlDataAccess.CommitTransaction();
+            _dataAccess.Transactions.CommitTransaction();
 
-            result = (string)_sqlDataAccess.ExecuteScalar("SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "RollbackTest"));
+            result = (string)_dataAccess.ExecuteScalar("SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "RollbackTest"));
             Assert.AreEqual("ROLLBACK", result);
         }
 
@@ -89,7 +91,7 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_execute_a_scalar_command_with_no_parameters_returning_the_correct_value()
         {
-            string result = (string)_sqlDataAccess.ExecuteScalar("SelectOneFromTestTable");
+            string result = (string)_dataAccess.ExecuteScalar("SelectOneFromTestTable");
             Assert.AreEqual("value1", result);
         }
 
@@ -99,7 +101,7 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_execute_a_scalar_command_with_a_parameter_returning_the_correct_value()
         {
-            string result = (string)_sqlDataAccess.ExecuteScalar("SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "key1"));
+            string result = (string)_dataAccess.ExecuteScalar("SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "key1"));
             Assert.AreEqual("value1", result);
         }
 
@@ -111,7 +113,7 @@ namespace Common.DataAccessLayer
         {
             DbCommand cmd = null;
 
-            string result = (string)_sqlDataAccess.ExecuteScalar(out cmd, "SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "key1"));
+            string result = (string)_dataAccess.ExecuteScalar(out cmd, "SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "key1"));
 
             Assert.IsNotNull(cmd);
             Assert.AreEqual("key1", (string)cmd.Parameters["@TestKey"].Value);
@@ -124,7 +126,7 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_execute_a_command_with_no_parameters_returning_a_IDataReader()
         {
-            IDataReader reader = _sqlDataAccess.ExecuteReader("SelectAllFromTestTable");
+            IDataReader reader = _dataAccess.ExecuteReader("SelectAllFromTestTable");
 
             Assert.IsNotNull(reader);
 
@@ -141,7 +143,7 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_execute_a_command_with_a_parameter_returning_a_IDataReader()
         {
-            IDataReader reader = _sqlDataAccess.ExecuteReader("SelectAllButFromTestTable", _sqlDataAccess.Create("@ExcludeKey", DbType.AnsiString, "key1"));
+            IDataReader reader = _dataAccess.ExecuteReader("SelectAllButFromTestTable", _dataAccess.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1"));
 
             Assert.IsNotNull(reader);
 
@@ -159,20 +161,20 @@ namespace Common.DataAccessLayer
         public void Should_execute_muliple_data_readers_when_all_reading_at_the_same_time()
         {
 
-            List<SqlDataAccess> sqlDataAccessList = new List<SqlDataAccess>(1000);
+            List<DataAccess> sqlDataAccessList = new List<DataAccess>(1000);
             
             string connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
 
             for (int i = 0; i < 1000; i++)
             {
-                sqlDataAccessList.Add(new SqlDataAccess(connectionString,_parameterFactory));
+                sqlDataAccessList.Add(new DataAccess(connectionString,_parameterFactory));
             }
 
             try
             {
-                foreach (SqlDataAccess item in sqlDataAccessList)
+                foreach (DataAccess item in sqlDataAccessList)
                 {
-                    using (DbDataReader reader = item.ExecuteReader("SelectAllButFromTestTable", item.Create("@ExcludeKey", DbType.AnsiString, "key1")))
+                    using (DbDataReader reader = item.ExecuteReader("SelectAllButFromTestTable", item.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1")))
                     {
                         while (reader.Read()) { }
                     }
@@ -196,13 +198,13 @@ namespace Common.DataAccessLayer
         public void Should_execute_multiple_nonquery_commands_with_parameters_returning_a_command_and_the_correct_values()
         {
             DbCommand cmd = null;
-            int rowsAffected = _sqlDataAccess.ExecuteNonQuery(out cmd, "DeleteFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "key1"));
+            int rowsAffected = _dataAccess.ExecuteNonQuery(out cmd, "DeleteFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "key1"));
 
             Assert.AreEqual(1, rowsAffected);           
             Assert.IsNotNull(cmd);
             Assert.AreEqual("key1", (string)cmd.Parameters["@TestKey"].Value);
             
-            string result = (string)_sqlDataAccess.ExecuteScalar("SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "key1"));
+            string result = (string)_dataAccess.ExecuteScalar("SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "key1"));
             Assert.IsNull(result);
         }
 
@@ -212,11 +214,11 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_execute_multiple_nonquery_commands_with_parameters_returning_the_correct_values()
         {
-            int rowsAffected = _sqlDataAccess.ExecuteNonQuery("DeleteFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "key1"));
+            int rowsAffected = _dataAccess.ExecuteNonQuery("DeleteFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "key1"));
 
             Assert.AreEqual(1, rowsAffected);
 
-            string result = (string)_sqlDataAccess.ExecuteScalar("SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "key1"));
+            string result = (string)_dataAccess.ExecuteScalar("SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "key1"));
             Assert.IsNull(result);
         }
 
@@ -226,11 +228,11 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_execute_multiple_nonquery_commands_with_and_without_parameters_returning_the_correct_values()
         {
-            int rowsAffected = _sqlDataAccess.ExecuteNonQuery("DeleteOneFromTestTable");
+            int rowsAffected = _dataAccess.ExecuteNonQuery("DeleteOneFromTestTable");
 
             Assert.AreEqual(1, rowsAffected);
 
-            string result = (string)_sqlDataAccess.ExecuteScalar("SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "key1"));
+            string result = (string)_dataAccess.ExecuteScalar("SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "key1"));
             Assert.IsNull(result);
         }
 
@@ -241,7 +243,7 @@ namespace Common.DataAccessLayer
         public void Should_execute_command_with_parameters_returning_a_populated_DataTable_and_command_object()
         {
             DbCommand cmd;
-            DataTable result = _sqlDataAccess.ExecuteDataTable(out cmd, "SelectAllButFromTestTable", _sqlDataAccess.Create("@ExcludeKey", DbType.AnsiString, "key1"));
+            DataTable result = _dataAccess.ExecuteDataTable(out cmd, "SelectAllButFromTestTable", _dataAccess.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1"));
 
             Assert.IsNotNull(cmd);
             Assert.AreEqual("key1", (string)cmd.Parameters["@ExcludeKey"].Value);
@@ -255,7 +257,7 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_execute_command_with_parameters_returning_a_populated_DataTable()
         {
-            DataTable result = _sqlDataAccess.ExecuteDataTable("SelectAllButFromTestTable", _sqlDataAccess.Create("@ExcludeKey", DbType.AnsiString, "key1"));
+            DataTable result = _dataAccess.ExecuteDataTable("SelectAllButFromTestTable", _dataAccess.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1"));
 
             Assert.AreEqual(4, result.Rows.Count);
         }
@@ -266,7 +268,7 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_execute_command_with_no_parameters_returning_a_populated_DataTable()
         {
-            DataTable result = _sqlDataAccess.ExecuteDataTable("SelectAllFromTestTable");
+            DataTable result = _dataAccess.ExecuteDataTable("SelectAllFromTestTable");
 
             Assert.AreEqual(5, result.Rows.Count);
         }
@@ -278,7 +280,7 @@ namespace Common.DataAccessLayer
         public void Should_execute_command_with_parameters_returning_a_populated_DataSet_and_command_object()
         {
             DbCommand cmd;
-            DataSet result = _sqlDataAccess.ExecuteDataSet(out cmd, "SelectAllButFromTestTable", _sqlDataAccess.Create("@ExcludeKey", DbType.AnsiString, "key1"));
+            DataSet result = _dataAccess.ExecuteDataSet(out cmd, "SelectAllButFromTestTable", _dataAccess.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1"));
 
             Assert.IsNotNull(cmd);
             Assert.AreEqual("key1", (string)cmd.Parameters["@ExcludeKey"].Value);
@@ -293,7 +295,7 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_execute_command_with_parameters_returning_a_populated_DataSet()
         {
-            DataSet result = _sqlDataAccess.ExecuteDataSet("SelectAllButFromTestTable", _sqlDataAccess.Create("@ExcludeKey", DbType.AnsiString, "key1"));
+            DataSet result = _dataAccess.ExecuteDataSet("SelectAllButFromTestTable", _dataAccess.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1"));
 
             Assert.AreEqual(1, result.Tables.Count);
             Assert.AreEqual(4, result.Tables[0].Rows.Count);
@@ -305,7 +307,7 @@ namespace Common.DataAccessLayer
         [Test()]
         public void Should_execute_command_with_no_parameters_returning_a_populated_DataSet()
         {
-            DataSet result = _sqlDataAccess.ExecuteDataSet("SelectAllFromTestTable");
+            DataSet result = _dataAccess.ExecuteDataSet("SelectAllFromTestTable");
 
             Assert.AreEqual(1, result.Tables.Count);
             Assert.AreEqual(5, result.Tables[0].Rows.Count);
@@ -315,7 +317,7 @@ namespace Common.DataAccessLayer
         public void Should_execute_command_with_no_parameters_returning_a_XmlReader()
         {
             string results;
-            using (XmlReader reader = _sqlDataAccess.ExecuteXmlReader("SelectAllFromTestTableAsXml"))
+            using (XmlReader reader = _dataAccess.ExecuteXmlReader("SelectAllFromTestTableAsXml"))
             {
                 reader.Read();
                 results = reader.ReadOuterXml();
@@ -328,7 +330,7 @@ namespace Common.DataAccessLayer
         public void Should_execute_command_with_a_parameter_returning_a_XmlReader()
         {
             string results;
-            using (XmlReader reader = _sqlDataAccess.ExecuteXmlReader("SelectAllButFromTestTableAsXml", _sqlDataAccess.Create("@ExcludeKey", DbType.AnsiString, "key1")))
+            using (XmlReader reader = _dataAccess.ExecuteXmlReader("SelectAllButFromTestTableAsXml", _dataAccess.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1")))
             {
                 reader.Read();
                 results = reader.ReadOuterXml();
@@ -343,7 +345,7 @@ namespace Common.DataAccessLayer
         {
             DbCommand cmd;
             string results;
-            using (XmlReader reader = _sqlDataAccess.ExecuteXmlReader(out cmd, "SelectAllButFromTestTableAsXml", _sqlDataAccess.Create("@ExcludeKey", DbType.AnsiString, "key1")))
+            using (XmlReader reader = _dataAccess.ExecuteXmlReader(out cmd, "SelectAllButFromTestTableAsXml", _dataAccess.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1")))
             {
                 reader.Read();
 
@@ -365,15 +367,15 @@ namespace Common.DataAccessLayer
         {
             string results;
             DbParameter[] parameters = new DbParameter[1];
-            parameters[0] = _sqlDataAccess.Create("@ExcludeKey", DbType.AnsiString, "key1");
+            parameters[0] = _dataAccess.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1");
 
-            using (XmlReader reader = _sqlDataAccess.ExecuteXmlReader("SelectAllButFromTestTableAsXml", parameters))
+            using (XmlReader reader = _dataAccess.ExecuteXmlReader("SelectAllButFromTestTableAsXml", parameters))
             {
                 reader.Read();
                 reader.ReadOuterXml();
             }
 
-            using (XmlReader reader = _sqlDataAccess.ExecuteXmlReader("SelectAllButFromTestTableAsXml", parameters))
+            using (XmlReader reader = _dataAccess.ExecuteXmlReader("SelectAllButFromTestTableAsXml", parameters))
             {
                 reader.Read();
                 results = reader.ReadOuterXml();
@@ -386,9 +388,9 @@ namespace Common.DataAccessLayer
         public void Should_not_clear_initial_parameter_list_when_calling_XmlReader()
         {
             List<DbParameter> parameters = new List<DbParameter>();
-            parameters.Add(_sqlDataAccess.Create("@ExcludeKey", DbType.AnsiString, "key1"));
+            parameters.Add(_dataAccess.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1"));
 
-            using (XmlReader reader = _sqlDataAccess.ExecuteXmlReader("SelectAllButFromTestTableAsXml", parameters.ToArray() ))
+            using (XmlReader reader = _dataAccess.ExecuteXmlReader("SelectAllButFromTestTableAsXml", parameters.ToArray() ))
             {
                 reader.Read();
                 reader.ReadOuterXml();
@@ -402,7 +404,7 @@ namespace Common.DataAccessLayer
         {
             DbCommand cmd = null;
 
-            _sqlDataAccess.ExecuteScalar(out cmd, "SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "key1"));
+            _dataAccess.ExecuteScalar(out cmd, "SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "key1"));
 
             Assert.AreEqual(30, cmd.CommandTimeout);
         }
@@ -410,12 +412,22 @@ namespace Common.DataAccessLayer
         [Test]
         public void Should_use_command_timeout_set_on_class()
         {
-            _sqlDataAccess.CommandTimeOut = 10;
+            _dataAccess.CommandTimeOut = 10;
             DbCommand cmd = null;
 
-            _sqlDataAccess.ExecuteScalar(out cmd, "SelectFromTestTable", _sqlDataAccess.Create("@TestKey", DbType.AnsiString, "key1"));
+            _dataAccess.ExecuteScalar(out cmd, "SelectFromTestTable", _dataAccess.ParameterFactory.Create("@TestKey", DbType.AnsiString, "key1"));
 
             Assert.AreEqual(10, cmd.CommandTimeout);
+        }
+
+        
+        public void s()
+        {
+            IDataAccess da = DataAccessFactory.Create("");  
+            da.Transactions.BeginTransaction();
+            da.ExecuteNonQuery("abc");
+            da.Transactions.CommitTransaction();
+
         }
     }
 }

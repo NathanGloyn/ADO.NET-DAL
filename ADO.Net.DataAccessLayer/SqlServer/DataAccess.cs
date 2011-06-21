@@ -10,23 +10,25 @@ namespace DataAccessLayer.SqlServer
     /// <summary>
     /// Base class used by all concrete classes in DataAccessLayer
     /// </summary>
-    public class SqlDataAccess : IDataAccess,ITransactions,IParameterCreation
+    public class DataAccess : IDataAccess
     {
         private SqlConnection databaseConnection = null;
         private DbTransaction currentTransaction = null;
         private string connectionString;
         private readonly IParameterCreation _parameterFactory;
+        private readonly ITransactionControl _transactionControl;
 
         /// <summary>
         /// Allows child classes to pass the connection string to be used for the
         /// connection during construction
         /// </summary>
         /// <param name="connectionString"></param>
-        public SqlDataAccess(string connectionString, IParameterCreation parameterFactory)
+        public DataAccess(string connectionString, IParameterCreation parameterFactory)
         {
             if (parameterFactory == null) throw new ArgumentNullException("parameterFactory");
             this.connectionString = connectionString;
             _parameterFactory = parameterFactory;
+            _transactionControl = new SqlTransactionControl();
         }
 
         /// <summary>
@@ -34,7 +36,15 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         public int CommandTimeOut { get; set; }
 
+        public IParameterCreation ParameterFactory
+        {
+            get { return _parameterFactory; }
+        }
 
+        public ITransactionControl Transactions
+        {
+            get { return _transactionControl; }
+        }
 
         /// <summary>
         /// Determines if the connection is currently in a transaction and
@@ -58,7 +68,11 @@ namespace DataAccessLayer.SqlServer
             }
         }
 
-        #region Execute Methods
+        private Commands CreateCommands()
+        {
+            SafelyOpenConnection();
+            return new Commands(databaseConnection, _transactionControl.CurrentTransaction, CommandTimeOut);
+        }
 
         /// <summary>
         /// Executes a command that does not return a query
@@ -78,26 +92,15 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DbCommand containing the command executed</returns>
         public int ExecuteNonQuery(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-            int rowsAffected = 0;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmdExecute = BuildCommand(storedProcedureName, parameters);
-
-                try
-                {
-                    connection.Open();
-                    rowsAffected = cmdExecute.ExecuteNonQuery();
-                }
-                finally
-                {
-                    SafelyCloseConnection();
-                }
-
-                cmd = cmdExecute; 
+                Commands commands = CreateCommands();
+                return commands.ExecuteNonQuery(out cmd, storedProcedureName, parameters);
             }
-
-            return rowsAffected;
+            finally
+            {
+                    SafelyCloseConnection();
+            }
         }
 
         /// <summary>
@@ -107,12 +110,15 @@ namespace DataAccessLayer.SqlServer
         /// <param name="parameters">DbParameter colleciton to use in executing</param>
         public int ExecuteNonQuery(string storedProcedureName, params DbParameter[] parameters)
         {
-            DbCommand cmd;
-            int rowsAffected = ExecuteNonQuery(out cmd, storedProcedureName, parameters);
-            cmd.Parameters.Clear();
-            cmd.Dispose();
-
-            return rowsAffected;
+            try
+            {
+                Commands commands = CreateCommands();
+                return commands.ExecuteNonQuery(storedProcedureName, parameters);
+            }
+            finally
+            {
+                SafelyCloseConnection();
+            }
         }
 
         /// <summary>
@@ -133,12 +139,16 @@ namespace DataAccessLayer.SqlServer
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(string storedProcedureName, params DbParameter[] parameters)
         {
-            DbCommand cmd;
-            object result = ExecuteScalar(out cmd, storedProcedureName, parameters);
-            cmd.Parameters.Clear();
-            cmd.Dispose();
-
-            return result;
+            try
+            {
+                Commands commands = CreateCommands();
+                return commands.ExecuteScalar(storedProcedureName, parameters);
+            }
+            finally
+            {
+                SafelyCloseConnection();
+            }
+            
         }
 
         /// <summary>
@@ -150,13 +160,17 @@ namespace DataAccessLayer.SqlServer
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-            SqlCommands commands = CreateCommands();
+            try
+            {
+                Commands commands = CreateCommands();
 
-            object data = commands.ExecuteScalar(out cmd, storedProcedureName, parameters);
+                return commands.ExecuteScalar(out cmd, storedProcedureName, parameters);
+            }
+            finally
+            {
+                SafelyCloseConnection();
+            }
 
-            SafelyCloseConnection();
-
-            return data;
         }
 
         /// <summary>
@@ -177,21 +191,8 @@ namespace DataAccessLayer.SqlServer
         /// <returns>SqlDataReader allowing access to results from command</returns>
         public DbDataReader ExecuteReader(string storedProcedureName, params DbParameter[] parameters)
         {
-            SqlDataReader reader = null;
-            SafelyOpenConnection();
-
-            using (SqlCommand cmdReader = new SqlCommand(storedProcedureName, databaseConnection))
-            {
-                cmdReader.CommandType = CommandType.StoredProcedure;
-                cmdReader.Transaction = (SqlTransaction)currentTransaction;
-
-                if (parameters != null && parameters.Length > 0)
-                    cmdReader.Parameters.AddRange(parameters);
-
-                reader = cmdReader.ExecuteReader(CommandBehavior.CloseConnection);
-            }
-
-            return reader;
+            Commands commands = CreateCommands();
+            return commands.ExecuteReader(storedProcedureName, parameters);
         }
 
         /// <summary>
@@ -212,12 +213,15 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataTable ExecuteDataTable(string storedProcedureName, params DbParameter[] parameters)
         {
-            DbCommand cmd;
-            DataTable results = ExecuteDataTable(out cmd, storedProcedureName, parameters);
-            cmd.Parameters.Clear();
-            cmd.Dispose();
-
-            return results;
+            try
+            {
+                Commands commands = CreateCommands();
+                return commands.ExecuteDataTable(storedProcedureName, parameters);
+            }
+            finally
+            {
+                SafelyCloseConnection();
+            }
         }
 
         /// <summary>
@@ -229,25 +233,15 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataTable ExecuteDataTable(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-            SafelyOpenConnection();
-            SqlCommand cmdDataTable = BuildCommand(storedProcedureName, parameters);
-
-            DataTable result = new DataTable();
-
-            using (SqlDataAdapter da = new SqlDataAdapter(cmdDataTable))
+            try
             {
-                try
-                {
-                    da.Fill(result);
-                }
-                finally
-                {
-                    SafelyCloseConnection();
-                }
+                Commands commands = CreateCommands();
+                return commands.ExecuteDataTable(out cmd, storedProcedureName, parameters);
             }
-
-            cmd = cmdDataTable;
-            return result;
+            finally
+            {
+                SafelyCloseConnection();
+            }
         }
 
         /// <summary>
@@ -268,12 +262,15 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataSet ExecuteDataSet(string storedProcedureName, params DbParameter[] parameters)
         {
-            DbCommand cmd;
-            DataSet results = ExecuteDataSet(out cmd, storedProcedureName, parameters);
-            cmd.Parameters.Clear();
-            cmd.Dispose();
-
-            return results;
+            try
+            {
+                Commands commands = CreateCommands();
+                return commands.ExecuteDataSet(storedProcedureName, parameters);
+            }
+            finally
+            {
+                SafelyCloseConnection();
+            }
         }
 
         /// <summary>
@@ -285,25 +282,15 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataSet ExecuteDataSet(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-            SafelyOpenConnection();
-            SqlCommand cmdDataSet = BuildCommand(storedProcedureName, parameters);
-
-            DataSet result = new DataSet();
-
-            using (SqlDataAdapter adapter = new SqlDataAdapter(cmdDataSet))
+            try
             {
-                try
-                {
-                    adapter.Fill(result);
-                }
-                finally
-                {
-                    SafelyCloseConnection();
-                }
+                Commands commands = CreateCommands();
+                return commands.ExecuteDataSet(out cmd, storedProcedureName, parameters);
             }
-
-            cmd = cmdDataSet;
-            return result;
+            finally
+            {
+                SafelyCloseConnection();
+            }
         }
 
         /// <summary>
@@ -324,12 +311,8 @@ namespace DataAccessLayer.SqlServer
         /// <returns>An instance of XmlReader pointing to the stream of xml returned</returns>
         public XmlReader ExecuteXmlReader(string storedProcedureName, params DbParameter[] parameters)
         {
-            DbCommand cmd;
-            XmlReader result = ExecuteXmlReader(out cmd, storedProcedureName, parameters);
-            cmd.Parameters.Clear();
-            cmd.Dispose();
-
-            return result;
+            Commands commands = CreateCommands();
+            return commands.ExecuteXmlReader(storedProcedureName, parameters);
         }
 
         /// <summary>
@@ -341,116 +324,10 @@ namespace DataAccessLayer.SqlServer
         /// <returns>An instance of XmlReader pointing to the stream of xml returned</returns>
         public XmlReader ExecuteXmlReader(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-            SafelyOpenConnection();
-
-            SqlCommand cmdXmlReader = BuildCommand(storedProcedureName, parameters);
-
-            XmlReader outputReader = cmdXmlReader.ExecuteSafeXmlReader();
-            cmd = cmdXmlReader;
-            return outputReader;
+            Commands commands = CreateCommands();
+            return commands.ExecuteXmlReader(out cmd, storedProcedureName, parameters);
         }
 
-        #endregion
 
-        /// <summary>
-        /// Starts a transaction on the current connection
-        /// </summary>
-        public void BeginTransaction()
-        {
-            SafelyOpenConnection();
-            currentTransaction = databaseConnection.BeginTransaction();
-        }
-
-        /// <summary>
-        /// Commits the current transaction
-        /// </summary>
-        public void CommitTransaction()
-        {
-            if (currentTransaction != null)
-            {
-                currentTransaction.Commit();
-                currentTransaction = null;
-                SafelyCloseConnection();
-            }
-        }
-
-        /// <summary>
-        /// Rolls back the current transaction
-        /// </summary>
-        public void RollbackTransaction()
-        {
-            if (currentTransaction != null)
-            {
-                currentTransaction.Rollback();
-                currentTransaction = null;
-                SafelyCloseConnection();
-            }
-        }
-
-        /// <summary>
-        /// Builds a SqlCommand to execute
-        /// </summary>
-        /// <param name="storedProcedureName">Name of stored procedure to execute</param>
-        /// <param name="parameters">Param array of DbParameter objects to use with command</param>
-        /// <returns>SqlCommand object ready for use</returns>
-        private SqlCommand BuildCommand(string storedProcedureName, params DbParameter[] parameters)
-        {
-            SqlCommand newCommand = new SqlCommand(storedProcedureName, databaseConnection) 
-            {   
-                Transaction = (SqlTransaction)currentTransaction,
-                CommandType = CommandType.StoredProcedure 
-            };
-
-            if (CommandTimeOut > 0)
-            {
-                newCommand.CommandTimeout = CommandTimeOut;
-            }
-
-            if (parameters != null)
-                newCommand.Parameters.AddRange(parameters);
-
-            return newCommand;
-        }
-
-        private SqlCommands CreateCommands()
-        {
-            SafelyOpenConnection();
-            return new SqlCommands(databaseConnection, currentTransaction, CommandTimeOut);
-        }
-
-        public DbParameter Create(string paramName, DbType paramType, object value, ParameterDirection direction)
-        {
-            return _parameterFactory.Create(paramName, paramType, value, direction);
-        }
-
-        public DbParameter Create(string paramName, DbType paramType, ParameterDirection direction)
-        {
-            return _parameterFactory.Create(paramName, paramType, direction);
-        }
-
-        public DbParameter Create(string paramName, DbType paramType, object value)
-        {
-            return _parameterFactory.Create(paramName, paramType, value);
-        }
-
-        public DbParameter Create(string paramName, DbType paramType, object value, int size)
-        {
-            return _parameterFactory.Create(paramName, paramType, value, size);
-        }
-
-        public DbParameter Create(string paramName, DbType paramType, object value, int size, byte precision, ParameterDirection direction)
-        {
-            return _parameterFactory.Create(paramName, paramType, value, size, direction);
-        }
-
-        public DbParameter Create(string paramName, DbType paramType, object value, int size, byte precision)
-        {
-            return  _parameterFactory.Create(paramName, paramType, value, size, precision);
-        }
-
-        public DbParameter Create(string paramName, DbType paramType, object value, int size, ParameterDirection direction)
-        {
-            return _parameterFactory.Create(paramName, paramType, value,size, direction);
-        }
     }
 }

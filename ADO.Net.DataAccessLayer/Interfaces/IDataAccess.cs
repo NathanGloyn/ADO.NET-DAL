@@ -14,8 +14,9 @@ namespace DataAccessLayer.Interfaces
         /// </summary>
         int CommandTimeOut { get; set; }
 
+        IParameterCreation ParameterFactory { get; }
+        ITransactionControl Transactions { get; }
 
-        #region Execute methods
 
         /// <summary>
         /// Executes a command and returns a DataTable
@@ -151,10 +152,5 @@ namespace DataAccessLayer.Interfaces
         /// <param name="parameters">DbParameter colleciton to use in executing</param>
         /// <returns>An instance of XmlReader pointing to the stream of xml returned</returns>
         XmlReader ExecuteXmlReader(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters);
-        #endregion
-
-        #region Transactions
-
-        #endregion
     }
 }

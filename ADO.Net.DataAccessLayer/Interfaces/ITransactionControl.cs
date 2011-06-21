@@ -1,9 +1,13 @@
-﻿namespace DataAccessLayer.Interfaces
+﻿using System.Data.Common;
+
+namespace DataAccessLayer.Interfaces
 {
-    interface ITransactions
+    public interface ITransactionControl
     {
+        DbTransaction CurrentTransaction { get; }
+
         /// <summary>
-        /// Starts a transaction on the current connection
+        /// Starts a transaction on the connection provided
         /// </summary>
         void BeginTransaction();
 

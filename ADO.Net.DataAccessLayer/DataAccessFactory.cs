@@ -13,11 +13,11 @@ namespace DataAccessLayer
         /// </summary>
         /// <param name="config">The connection string for the provider</param>
         /// <returns>IDataAccess object</returns>
-        /// <remarks>Currently only handling the creation of SqlDataAccess classes, the factory exists to provide an extension point 
+        /// <remarks>Currently only handling the creation of DataAccess classes, the factory exists to provide an extension point 
         /// where additional data access can be created with out having to refactor a lot of code</remarks>
         public static IDataAccess Create(string config)
         {
-            return new SqlDataAccess(config,new SqlParameterFactory());
+            return new DataAccess(config,new SqlParameterFactory());
         }
     }
 }

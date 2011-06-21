@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface ISqlCommands
+    public interface ICommands
     {
         /// <summary>
         /// Executes a command that does not return a query
