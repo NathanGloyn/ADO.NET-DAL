@@ -49,8 +49,8 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Utilities.UnitTest">
-      <HintPath>..\..\Unit Test Utility\bin\Debug\Utilities.UnitTest.dll</HintPath>
+    <Reference Include="Utilities.UnitTest, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\lib\Utilities.UnitTest.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
