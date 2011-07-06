@@ -12,9 +12,7 @@ namespace DataAccessLayer.SqlServer
     /// </summary>
     public class DataAccess : IDataAccess
     {
-        private SqlConnection databaseConnection = null;
-        private DbTransaction currentTransaction = null;
-        private string connectionString;
+        private Connection connection = null;
         private readonly IParameterCreation _parameterFactory;
         private readonly ITransactionControl _transactionControl;
 
@@ -26,9 +24,9 @@ namespace DataAccessLayer.SqlServer
         public DataAccess(string connectionString, IParameterCreation parameterFactory)
         {
             if (parameterFactory == null) throw new ArgumentNullException("parameterFactory");
-            this.connectionString = connectionString;
+            connection = new Connection(connectionString);
             _parameterFactory = parameterFactory;
-            _transactionControl = new SqlTransactionControl();
+            _transactionControl = new SqlTransactionControl(connection);
         }
 
         /// <summary>
@@ -46,32 +44,10 @@ namespace DataAccessLayer.SqlServer
             get { return _transactionControl; }
         }
 
-        /// <summary>
-        /// Determines if the connection is currently in a transaction and
-        /// close the connection if not.
-        /// </summary>
-        private void SafelyCloseConnection()
-        {
-            if (currentTransaction == null)
-            {
-                databaseConnection.Close();
-                databaseConnection.Dispose();
-            }
-        }
-
-        private void SafelyOpenConnection()
-        {
-            if (databaseConnection == null || databaseConnection.State != ConnectionState.Open)
-            {
-                databaseConnection = new SqlConnection(connectionString);
-                databaseConnection.Open();
-            }
-        }
-
         private Commands CreateCommands()
         {
-            SafelyOpenConnection();
-            return new Commands(databaseConnection, _transactionControl.CurrentTransaction, CommandTimeOut);
+            connection.SafelyOpenConnection();
+            return new Commands(connection, _transactionControl.CurrentTransaction, CommandTimeOut);
         }
 
         /// <summary>
@@ -99,7 +75,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                    SafelyCloseConnection();
+                    connection.SafelyCloseConnection();
             }
         }
 
@@ -117,7 +93,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                SafelyCloseConnection();
+                connection.SafelyCloseConnection();
             }
         }
 
@@ -146,7 +122,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                SafelyCloseConnection();
+                connection.SafelyCloseConnection();
             }
             
         }
@@ -168,7 +144,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                SafelyCloseConnection();
+                connection.SafelyCloseConnection();
             }
 
         }
@@ -220,7 +196,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                SafelyCloseConnection();
+                connection.SafelyCloseConnection();
             }
         }
 
@@ -240,7 +216,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                SafelyCloseConnection();
+                connection.SafelyCloseConnection();
             }
         }
 
@@ -269,7 +245,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                SafelyCloseConnection();
+                connection.SafelyCloseConnection();
             }
         }
 
@@ -289,7 +265,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                SafelyCloseConnection();
+                connection.SafelyCloseConnection();
             }
         }
 
