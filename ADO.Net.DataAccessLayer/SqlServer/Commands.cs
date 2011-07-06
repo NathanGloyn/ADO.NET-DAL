@@ -15,10 +15,10 @@ namespace DataAccessLayer.SqlServer
         private readonly int _commandTimeOut;
 
 
-        internal Commands(Connection currentConnection, DbTransaction currentTransaction, int commandTimeOut)
+        internal Commands(IConnection currentConnection, IDbTransaction currentTransaction, int commandTimeOut)
         {
             if (currentConnection == null) throw new ArgumentNullException("currentConnection");
-            _currentConnection = currentConnection.DatabaseConnection;
+            _currentConnection = (SqlConnection) currentConnection.DatabaseConnection;
             _currentTransaction = currentTransaction as SqlTransaction;
             _commandTimeOut = commandTimeOut;
         }

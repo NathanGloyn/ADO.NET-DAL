@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Data;
 using System.Xml;
 using DataAccessLayer.Interfaces;
@@ -12,7 +11,7 @@ namespace DataAccessLayer.SqlServer
     /// </summary>
     public class DataAccess : IDataAccess
     {
-        private Connection connection = null;
+        private IConnection connection = null;
         private readonly IParameterCreation _parameterFactory;
         private readonly ITransactionControl _transactionControl;
 
@@ -26,7 +25,7 @@ namespace DataAccessLayer.SqlServer
             if (parameterFactory == null) throw new ArgumentNullException("parameterFactory");
             connection = new Connection(connectionString);
             _parameterFactory = parameterFactory;
-            _transactionControl = new SqlTransactionControl(connection);
+            _transactionControl = new TransactionControl(connection);
         }
 
         /// <summary>
@@ -46,7 +45,7 @@ namespace DataAccessLayer.SqlServer
 
         private Commands CreateCommands()
         {
-            connection.SafelyOpenConnection();
+            connection.Open();
             return new Commands(connection, _transactionControl.CurrentTransaction, CommandTimeOut);
         }
 
@@ -75,7 +74,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                    connection.SafelyCloseConnection();
+                    connection.Close();
             }
         }
 
@@ -93,7 +92,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                connection.SafelyCloseConnection();
+                connection.Close();
             }
         }
 
@@ -122,7 +121,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                connection.SafelyCloseConnection();
+                connection.Close();
             }
             
         }
@@ -144,7 +143,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                connection.SafelyCloseConnection();
+                connection.Close();
             }
 
         }
@@ -196,7 +195,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                connection.SafelyCloseConnection();
+                connection.Close();
             }
         }
 
@@ -216,7 +215,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                connection.SafelyCloseConnection();
+                connection.Close();
             }
         }
 
@@ -245,7 +244,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                connection.SafelyCloseConnection();
+                connection.Close();
             }
         }
 
@@ -265,7 +264,7 @@ namespace DataAccessLayer.SqlServer
             }
             finally
             {
-                connection.SafelyCloseConnection();
+                connection.Close();
             }
         }
 

@@ -1,14 +1,16 @@
 using System.Data;
 using System.Data.SqlClient;
+using DataAccessLayer.Interfaces;
 
 namespace DataAccessLayer.SqlServer
 {
-    internal class Connection
+    internal class Connection : IConnection
     {
         private readonly string connectionString;
-        internal SqlConnection DatabaseConnection { get; set; }
+        private SqlConnection currentConnection;
 
-        internal bool InTransaction{get; set;}
+        public IDbConnection DatabaseConnection { get; private set; }
+        public bool InTransaction{get; set;}
 
 
         internal Connection(string connectionString)
@@ -20,9 +22,8 @@ namespace DataAccessLayer.SqlServer
         /// Determines if the connection is currently in a transaction and
         /// close the connection if not.
         /// </summary>
-        internal void SafelyCloseConnection()
+        public void Close()
         {
-
             if (! InTransaction)
             {
                 DatabaseConnection.Close();
@@ -30,7 +31,7 @@ namespace DataAccessLayer.SqlServer
             }
         }
 
-        internal void SafelyOpenConnection()
+        public void Open()
         {
             if (DatabaseConnection == null || DatabaseConnection.State != ConnectionState.Open)
             {

@@ -1,20 +1,15 @@
-using System.Data.Common;
-using System.Data.SqlClient;
+using System.Data;
 using DataAccessLayer.Interfaces;
 
 namespace DataAccessLayer.SqlServer
 {
-    public class SqlTransactionControl:ITransactionControl
+    public class TransactionControl:ITransactionControl
     {
-        private readonly Connection connection;
-        private SqlTransaction currentTransaction = null;
+        private readonly IConnection connection;
 
-        public DbTransaction CurrentTransaction
-        {
-            get { return currentTransaction as DbTransaction; }
-        }
+        public IDbTransaction CurrentTransaction { get; private set; }
 
-        internal SqlTransactionControl(Connection connection)
+        internal TransactionControl(IConnection connection)
         {
             this.connection = connection;
         }
@@ -24,8 +19,8 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         public void BeginTransaction()
         {
-            connection.SafelyOpenConnection();
-            currentTransaction = connection.DatabaseConnection.BeginTransaction();
+            connection.Open();
+            CurrentTransaction = connection.DatabaseConnection.BeginTransaction();
             connection.InTransaction = true;
         }
 
@@ -34,10 +29,10 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         public void CommitTransaction()
         {
-            if (currentTransaction != null)
+            if (CurrentTransaction != null)
             {
-                currentTransaction.Commit();
-                currentTransaction = null;
+                CurrentTransaction.Commit();
+                CurrentTransaction = null;
                 connection.InTransaction = false;
             }
         }
@@ -47,10 +42,10 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         public void RollbackTransaction()
         {
-            if (currentTransaction != null)
+            if (CurrentTransaction != null)
             {
-                currentTransaction.Rollback();
-                currentTransaction = null;
+                CurrentTransaction.Rollback();
+                CurrentTransaction = null;
                 connection.InTransaction = false;
             }
         }
