@@ -2,6 +2,7 @@
 using System.Data.Common;
 using System.Data;
 using System.Xml;
+using DataAccessLayer.Core;
 using DataAccessLayer.Interfaces;
 
 namespace DataAccessLayer.SqlServer
@@ -45,7 +46,6 @@ namespace DataAccessLayer.SqlServer
 
         private Commands CreateCommands()
         {
-            connection.Open();
             return new Commands(connection, _transactionControl.CurrentTransaction, CommandTimeOut);
         }
 
@@ -67,15 +67,10 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DbCommand containing the command executed</returns>
         public int ExecuteNonQuery(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-            try
-            {
-                Commands commands = CreateCommands();
-                return commands.ExecuteNonQuery(out cmd, storedProcedureName, parameters);
-            }
-            finally
-            {
-                    connection.Close();
-            }
+
+            Commands commands = CreateCommands();
+            return commands.ExecuteNonQuery(out cmd, storedProcedureName, parameters);
+
         }
 
         /// <summary>
@@ -85,15 +80,8 @@ namespace DataAccessLayer.SqlServer
         /// <param name="parameters">DbParameter colleciton to use in executing</param>
         public int ExecuteNonQuery(string storedProcedureName, params DbParameter[] parameters)
         {
-            try
-            {
-                Commands commands = CreateCommands();
-                return commands.ExecuteNonQuery(storedProcedureName, parameters);
-            }
-            finally
-            {
-                connection.Close();
-            }
+            Commands commands = CreateCommands();
+            return commands.ExecuteNonQuery(storedProcedureName, parameters);
         }
 
         /// <summary>
@@ -114,16 +102,8 @@ namespace DataAccessLayer.SqlServer
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(string storedProcedureName, params DbParameter[] parameters)
         {
-            try
-            {
-                Commands commands = CreateCommands();
-                return commands.ExecuteScalar(storedProcedureName, parameters);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            
+            Commands commands = CreateCommands();
+            return commands.ExecuteScalar(storedProcedureName, parameters);
         }
 
         /// <summary>
@@ -135,17 +115,9 @@ namespace DataAccessLayer.SqlServer
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-            try
-            {
                 Commands commands = CreateCommands();
 
                 return commands.ExecuteScalar(out cmd, storedProcedureName, parameters);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
         }
 
         /// <summary>

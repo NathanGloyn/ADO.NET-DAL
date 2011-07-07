@@ -7,11 +7,9 @@ namespace DataAccessLayer.SqlServer
     internal class Connection : IConnection
     {
         private readonly string connectionString;
-        private SqlConnection currentConnection;
 
         public IDbConnection DatabaseConnection { get; private set; }
         public bool InTransaction{get; set;}
-
 
         internal Connection(string connectionString)
         {

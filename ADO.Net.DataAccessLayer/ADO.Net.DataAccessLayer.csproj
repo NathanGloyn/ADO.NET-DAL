@@ -87,7 +87,7 @@
     <Compile Include="Interfaces\IConnection.cs" />
     <Compile Include="SqlServer\SqlExtensions.cs" />
     <Compile Include="SqlServer\SqlParameterFactory.cs" />
-    <Compile Include="SqlServer\TransactionControl.cs" />
+    <Compile Include="Core\TransactionControl.cs" />
     <Compile Include="SqlServer\SqlXmlReader.cs" />
   </ItemGroup>
   <ItemGroup>

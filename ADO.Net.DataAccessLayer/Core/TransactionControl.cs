@@ -1,7 +1,7 @@
 using System.Data;
 using DataAccessLayer.Interfaces;
 
-namespace DataAccessLayer.SqlServer
+namespace DataAccessLayer.Core
 {
     public class TransactionControl:ITransactionControl
     {

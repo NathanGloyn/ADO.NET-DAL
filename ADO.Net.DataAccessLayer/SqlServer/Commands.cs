@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -10,16 +9,18 @@ namespace DataAccessLayer.SqlServer
 {
     public class Commands : ICommands
     {
-        private readonly SqlConnection _currentConnection;
+        private readonly SqlConnection _currentSqlConnection;
         private readonly SqlTransaction _currentTransaction;
+        private readonly IConnection _currentConnection;
         private readonly int _commandTimeOut;
 
 
         internal Commands(IConnection currentConnection, IDbTransaction currentTransaction, int commandTimeOut)
         {
             if (currentConnection == null) throw new ArgumentNullException("currentConnection");
-            _currentConnection = (SqlConnection) currentConnection.DatabaseConnection;
+            _currentSqlConnection = (SqlConnection) currentConnection.DatabaseConnection;
             _currentTransaction = currentTransaction as SqlTransaction;
+            _currentConnection = currentConnection;
             _commandTimeOut = commandTimeOut;
         }
 
@@ -39,9 +40,7 @@ namespace DataAccessLayer.SqlServer
         /// <param name="parameters">DbParameter colleciton to use in executing</param>
         public int ExecuteNonQuery(string commandText, params DbParameter[] parameters)
         {
-
             return Execute(x => x.ExecuteNonQuery(),  commandText, parameters);
-
         }
 
         /// <summary>
@@ -109,7 +108,9 @@ namespace DataAccessLayer.SqlServer
         {
             SqlDataReader reader = null;
 
-            using (SqlCommand cmdReader = new SqlCommand(commandText, _currentConnection))
+            _currentConnection.Open();
+
+            using (SqlCommand cmdReader = new SqlCommand(commandText, (SqlConnection)_currentConnection.DatabaseConnection))
             {
                 cmdReader.CommandType = CommandType.StoredProcedure;
                 cmdReader.Transaction = _currentTransaction;
@@ -165,13 +166,22 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataTable ExecuteDataTable(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
-            SqlCommand cmdDataTable = BuildCommand(commandText, parameters);
-
             DataTable result = new DataTable();
+            SqlCommand cmdDataTable;
 
-            using (SqlDataAdapter da = new SqlDataAdapter(cmdDataTable))
+            try
             {
-                da.Fill(result);
+                _currentConnection.Open();
+                cmdDataTable = BuildCommand(commandText, parameters);
+
+                using (SqlDataAdapter da = new SqlDataAdapter(cmdDataTable))
+                {
+                    da.Fill(result);
+                }
+            }
+            finally
+            {
+                _currentConnection.Close();
             }
 
             cmd = cmdDataTable;
@@ -213,13 +223,23 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataSet ExecuteDataSet(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
-            SqlCommand cmdDataSet = BuildCommand(commandText, parameters);
+            SqlCommand cmdDataSet;
 
             DataSet result = new DataSet();
 
-            using (SqlDataAdapter adapter = new SqlDataAdapter(cmdDataSet))
+            try
             {
-                adapter.Fill(result);
+                _currentConnection.Open();
+                cmdDataSet = BuildCommand(commandText, parameters);
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmdDataSet))
+                {
+                    adapter.Fill(result);
+                }
+            }
+            finally
+            {
+                _currentConnection.Close();
             }
 
             cmd = cmdDataSet;
@@ -261,6 +281,7 @@ namespace DataAccessLayer.SqlServer
         /// <returns>An instance of XmlReader pointing to the stream of xml returned</returns>
         public XmlReader ExecuteXmlReader(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
+            _currentConnection.Open();
             SqlCommand cmdXmlReader = BuildCommand(commandText, parameters);
 
             XmlReader outputReader = cmdXmlReader.ExecuteSafeXmlReader();
@@ -276,7 +297,7 @@ namespace DataAccessLayer.SqlServer
         /// <returns>SqlCommand object ready for use</returns>
         private SqlCommand BuildCommand(string storedProcedureName, params DbParameter[] parameters)
         {
-            SqlCommand newCommand = new SqlCommand(storedProcedureName, _currentConnection)
+            SqlCommand newCommand = new SqlCommand(storedProcedureName, (SqlConnection) _currentConnection.DatabaseConnection)
             {
                 Transaction = _currentTransaction,
                 CommandType = CommandType.StoredProcedure
@@ -312,11 +333,21 @@ namespace DataAccessLayer.SqlServer
 
         private T Execute<T>(Func<SqlCommand, T> commandToExecute, out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
-            SqlCommand toExecute = BuildCommand(commandText, parameters);
+            SqlCommand toExecute;
+            object result;
 
-            object result = commandToExecute(toExecute);
-
-            cmd = toExecute;
+            try
+            {
+                _currentConnection.Open();
+                toExecute = BuildCommand(commandText, parameters);
+                result = commandToExecute(toExecute);
+                
+                cmd = toExecute;
+            }
+            finally
+            {
+                _currentConnection.Close();
+            }
 
             return (T) result;
         }
