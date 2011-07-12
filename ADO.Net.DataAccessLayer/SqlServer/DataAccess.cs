@@ -12,7 +12,7 @@ namespace DataAccessLayer.SqlServer
     /// </summary>
     public class DataAccess : IDataAccess
     {
-        private IConnection connection = null;
+        private IConnection connection;
         private readonly IParameterCreation _parameterFactory;
         private readonly ITransactionControl _transactionControl;
 
@@ -23,7 +23,9 @@ namespace DataAccessLayer.SqlServer
         /// <param name="connectionString"></param>
         public DataAccess(string connectionString, IParameterCreation parameterFactory)
         {
+            if (string.IsNullOrEmpty(connectionString)) throw new ArgumentNullException("connectionString");
             if (parameterFactory == null) throw new ArgumentNullException("parameterFactory");
+
             connection = new Connection(connectionString);
             _parameterFactory = parameterFactory;
             _transactionControl = new TransactionControl(connection);
@@ -116,7 +118,6 @@ namespace DataAccessLayer.SqlServer
         public object ExecuteScalar(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
                 Commands commands = CreateCommands();
-
                 return commands.ExecuteScalar(out cmd, storedProcedureName, parameters);
         }
 
@@ -160,15 +161,8 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataTable ExecuteDataTable(string storedProcedureName, params DbParameter[] parameters)
         {
-            try
-            {
-                Commands commands = CreateCommands();
-                return commands.ExecuteDataTable(storedProcedureName, parameters);
-            }
-            finally
-            {
-                connection.Close();
-            }
+            Commands commands = CreateCommands();
+            return commands.ExecuteDataTable(storedProcedureName, parameters);
         }
 
         /// <summary>
@@ -180,15 +174,8 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataTable ExecuteDataTable(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-            try
-            {
-                Commands commands = CreateCommands();
-                return commands.ExecuteDataTable(out cmd, storedProcedureName, parameters);
-            }
-            finally
-            {
-                connection.Close();
-            }
+            Commands commands = CreateCommands();
+            return commands.ExecuteDataTable(out cmd, storedProcedureName, parameters);
         }
 
         /// <summary>
@@ -209,15 +196,8 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataSet ExecuteDataSet(string storedProcedureName, params DbParameter[] parameters)
         {
-            try
-            {
-                Commands commands = CreateCommands();
-                return commands.ExecuteDataSet(storedProcedureName, parameters);
-            }
-            finally
-            {
-                connection.Close();
-            }
+            Commands commands = CreateCommands();
+            return commands.ExecuteDataSet(storedProcedureName, parameters);
         }
 
         /// <summary>
@@ -229,15 +209,8 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataSet ExecuteDataSet(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-            try
-            {
-                Commands commands = CreateCommands();
-                return commands.ExecuteDataSet(out cmd, storedProcedureName, parameters);
-            }
-            finally
-            {
-                connection.Close();
-            }
+            Commands commands = CreateCommands();
+            return commands.ExecuteDataSet(out cmd, storedProcedureName, parameters);
         }
 
         /// <summary>
@@ -274,7 +247,5 @@ namespace DataAccessLayer.SqlServer
             Commands commands = CreateCommands();
             return commands.ExecuteXmlReader(out cmd, storedProcedureName, parameters);
         }
-
-
     }
 }

@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.1.0.0\lib\35\NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\3rd Party Assemblies\NUnit 2.5.7\bin\net-2.0\framework\nunit.framework.dll</HintPath>
     </Reference>
@@ -54,9 +57,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonTestSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="When_constructing_DataAccess.cs" />
+    <Compile Include="When_executing_an_reader_command.cs" />
+    <Compile Include="When_executing_a_scalar_command.cs" />
     <Compile Include="When_using_SqlDataAccess.cs" />
     <Compile Include="When_creating_Db_Parameters.cs" />
+    <Compile Include="When_using_transactions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestScripts\CommonCreateScripts\01_create_tables.sql" />
@@ -65,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ADO.Net.DataAccessLayer\ADO.Net.DataAccessLayer.csproj">
