@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href='coverage.xsl' type='text/xsl'?>
+<!-- Re-saved from NCover by NCoverExplorer url=http://www.kiwidude.com/blog/ -->
+<coverage profilerVersion="1.5.8 Beta" driverVersion="1.5.8.0" startTime="2011-07-18T14:53:12.4764903+01:00" measureTime="2011-07-18T14:53:32.2346204+01:00">
+  <module name="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayerTests\bin\Debug\ADO.Net.DataAccessLayer.dll" assembly="ADO.Net.DataAccessLayer" assemblyIdentity="ADO.Net.DataAccessLayer, Version=1.0.3.0, Culture=neutral, PublicKeyToken=null, processorArchitecture=MSIL">
+    <method name=".ctor" excluded="false" instrumented="true" class="DataAccessLayer.Core.TransactionControl">
+      <seqpnt visitcount="1026" line="12" column="9" endline="12" endcolumn="60" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="1026" line="14" column="13" endline="14" endcolumn="42" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="1026" line="15" column="9" endline="15" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+    </method>
+    <method name="BeginTransaction" excluded="false" instrumented="true" class="DataAccessLayer.Core.TransactionControl">
+      <seqpnt visitcount="2" line="22" column="13" endline="22" endcolumn="31" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="2" line="23" column="13" endline="23" endcolumn="83" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="2" line="24" column="13" endline="24" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="2" line="25" column="9" endline="25" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+    </method>
+    <method name="CommitTransaction" excluded="false" instrumented="true" class="DataAccessLayer.Core.TransactionControl">
+      <seqpnt visitcount="1" line="32" column="13" endline="32" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="1" line="34" column="17" endline="34" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="1" line="35" column="17" endline="35" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="1" line="36" column="17" endline="36" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="1" line="38" column="9" endline="38" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+    </method>
+    <method name="RollbackTransaction" excluded="false" instrumented="true" class="DataAccessLayer.Core.TransactionControl">
+      <seqpnt visitcount="1" line="45" column="13" endline="45" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="1" line="47" column="17" endline="47" endcolumn="47" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="1" line="48" column="17" endline="48" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="1" line="49" column="17" endline="49" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+      <seqpnt visitcount="1" line="51" column="9" endline="51" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\Core\TransactionControl.cs" />
+    </method>
+    <method name=".ctor" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="1031" line="18" column="9" endline="18" endcolumn="112" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1031" line="20" column="13" endline="20" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="0" line="20" column="44" endline="20" endcolumn="97" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1031" line="21" column="13" endline="21" endcolumn="90" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1031" line="22" column="13" endline="22" endcolumn="72" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1031" line="23" column="13" endline="23" endcolumn="52" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1031" line="24" column="13" endline="24" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1031" line="25" column="9" endline="25" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="&lt;ExecuteNonQuery&gt;b__0" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="4" line="43" column="33" endline="43" endcolumn="52" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="&lt;ExecuteNonQuery&gt;b__2" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="1" line="55" column="33" endline="55" endcolumn="52" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="&lt;ExecuteScalar&gt;b__4" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="9" line="76" column="33" endline="76" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="&lt;ExecuteScalar&gt;b__6" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="3" line="88" column="33" endline="88" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="BuildCommand" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="29" line="300" column="13" endline="304" endcolumn="15" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="29" line="306" column="13" endline="306" endcolumn="37" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1" line="308" column="17" endline="308" endcolumn="61" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="29" line="311" column="13" endline="311" endcolumn="36" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="24" line="312" column="17" endline="312" endcolumn="60" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="29" line="314" column="13" endline="314" endcolumn="31" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="29" line="315" column="9" endline="315" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="Execute" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="13" line="319" column="13" endline="319" endcolumn="34" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="13" line="323" column="17" endline="323" endcolumn="86" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="13" line="327" column="17" endline="327" endcolumn="40" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="13" line="328" column="17" endline="328" endcolumn="31" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="13" line="331" column="13" endline="331" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="13" line="332" column="9" endline="332" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="Execute" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="17" line="341" column="17" endline="341" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="17" line="342" column="17" endline="342" endcolumn="67" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="17" line="343" column="17" endline="343" endcolumn="54" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="17" line="345" column="17" endline="345" endcolumn="33" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="17" line="349" column="17" endline="349" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="17" line="352" column="13" endline="352" endcolumn="31" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="17" line="353" column="9" endline="353" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteDataSet" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="0" line="198" column="13" endline="198" endcolumn="54" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="0" line="199" column="9" endline="199" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteDataSet" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="2" line="210" column="13" endline="210" endcolumn="80" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="2" line="211" column="13" endline="211" endcolumn="36" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="2" line="212" column="13" endline="212" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="2" line="214" column="13" endline="214" endcolumn="28" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="2" line="215" column="9" endline="215" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteDataSet" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="3" line="228" column="13" endline="228" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="232" column="17" endline="232" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="233" column="17" endline="233" endcolumn="68" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="235" column="24" endline="235" endcolumn="79" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="237" column="21" endline="237" endcolumn="42" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="242" column="17" endline="242" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="245" column="13" endline="245" endcolumn="30" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="246" column="13" endline="246" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="247" column="9" endline="247" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteDataTable" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="0" line="134" column="13" endline="134" endcolumn="56" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="0" line="135" column="9" endline="135" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteDataTable" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="2" line="145" column="13" endline="145" endcolumn="33" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="2" line="149" column="17" endline="149" endcolumn="78" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="2" line="153" column="17" endline="153" endcolumn="40" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="2" line="154" column="17" endline="154" endcolumn="31" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="2" line="157" column="13" endline="157" endcolumn="28" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="2" line="158" column="9" endline="158" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteDataTable" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="3" line="169" column="13" endline="169" endcolumn="48" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="174" column="17" endline="174" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="175" column="17" endline="175" endcolumn="70" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="177" column="24" endline="177" endcolumn="76" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="179" column="21" endline="179" endcolumn="37" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="184" column="17" endline="184" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="187" column="13" endline="187" endcolumn="32" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="188" column="13" endline="188" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="189" column="9" endline="189" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteNonQuery" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="0" line="33" column="13" endline="33" endcolumn="55" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="0" line="34" column="9" endline="34" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteNonQuery" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="4" line="43" column="13" endline="43" endcolumn="80" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="4" line="44" column="9" endline="44" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteNonQuery" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="1" line="55" column="13" endline="55" endcolumn="88" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1" line="56" column="9" endline="56" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="0" line="98" column="13" endline="98" endcolumn="53" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="0" line="99" column="9" endline="99" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="1002" line="109" column="13" endline="109" endcolumn="41" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1002" line="111" column="13" endline="111" endcolumn="39" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1002" line="113" column="20" endline="113" endcolumn="124" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1002" line="115" column="17" endline="115" endcolumn="69" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1002" line="116" column="17" endline="116" endcolumn="61" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1002" line="118" column="17" endline="118" endcolumn="65" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1001" line="119" column="21" endline="119" endcolumn="63" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1002" line="121" column="17" endline="121" endcolumn="83" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1002" line="124" column="13" endline="124" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="1002" line="125" column="9" endline="125" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteScalar" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="0" line="65" column="13" endline="65" endcolumn="53" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="0" line="66" column="9" endline="66" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteScalar" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="9" line="76" column="13" endline="76" endcolumn="77" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="9" line="77" column="9" endline="77" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteScalar" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="3" line="88" column="13" endline="88" endcolumn="86" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="3" line="89" column="9" endline="89" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteXmlReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="0" line="256" column="13" endline="256" endcolumn="56" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="0" line="257" column="9" endline="257" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteXmlReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="5" line="268" column="13" endline="268" endcolumn="83" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="5" line="269" column="13" endline="269" endcolumn="36" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="5" line="270" column="13" endline="270" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="5" line="272" column="13" endline="272" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="5" line="273" column="9" endline="273" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name="ExecuteXmlReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Commands">
+      <seqpnt visitcount="6" line="284" column="13" endline="284" endcolumn="39" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="6" line="285" column="13" endline="285" endcolumn="77" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="6" line="287" column="13" endline="287" endcolumn="74" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="6" line="288" column="13" endline="288" endcolumn="32" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="6" line="289" column="13" endline="289" endcolumn="33" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+      <seqpnt visitcount="6" line="290" column="9" endline="290" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Commands.cs" />
+    </method>
+    <method name=".ctor" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Connection">
+      <seqpnt visitcount="1026" line="14" column="9" endline="14" endcolumn="53" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+      <seqpnt visitcount="1026" line="16" column="13" endline="16" endcolumn="54" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+      <seqpnt visitcount="1026" line="17" column="9" endline="17" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+    </method>
+    <method name="Close" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Connection">
+      <seqpnt visitcount="23" line="25" column="13" endline="25" endcolumn="33" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+      <seqpnt visitcount="19" line="27" column="17" endline="27" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+      <seqpnt visitcount="19" line="28" column="17" endline="28" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+      <seqpnt visitcount="23" line="30" column="9" endline="30" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+    </method>
+    <method name="Open" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.Connection">
+      <seqpnt visitcount="1033" line="34" column="13" endline="34" endcolumn="96" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+      <seqpnt visitcount="1027" line="36" column="17" endline="36" endcolumn="74" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+      <seqpnt visitcount="1027" line="37" column="17" endline="37" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+      <seqpnt visitcount="1033" line="39" column="9" endline="39" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\Connection.cs" />
+    </method>
+    <method name=".ctor" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1029" line="24" column="9" endline="24" endcolumn="88" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1029" line="26" column="13" endline="26" endcolumn="56" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="2" line="26" column="57" endline="26" endcolumn="109" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1027" line="27" column="13" endline="27" endcolumn="42" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="27" column="43" endline="27" endcolumn="95" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1026" line="29" column="13" endline="29" endcolumn="59" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1026" line="30" column="13" endline="30" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1026" line="31" column="13" endline="31" endcolumn="70" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1026" line="32" column="9" endline="32" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="CreateCommands" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1031" line="51" column="13" endline="51" endcolumn="101" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1031" line="52" column="9" endline="52" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteDataSet" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1" line="188" column="13" endline="188" endcolumn="62" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="189" column="9" endline="189" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteDataSet" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="2" line="199" column="13" endline="199" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="2" line="200" column="13" endline="200" endcolumn="77" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="2" line="201" column="9" endline="201" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteDataSet" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1" line="212" column="13" endline="212" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="213" column="13" endline="213" endcolumn="86" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="214" column="9" endline="214" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteDataTable" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1" line="153" column="13" endline="153" endcolumn="64" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="154" column="9" endline="154" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteDataTable" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="2" line="164" column="13" endline="164" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="2" line="165" column="13" endline="165" endcolumn="79" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="2" line="166" column="9" endline="166" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteDataTable" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1" line="177" column="13" endline="177" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="178" column="13" endline="178" endcolumn="88" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="179" column="9" endline="179" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteNonQuery" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1" line="60" column="13" endline="60" endcolumn="63" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="61" column="9" endline="61" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteNonQuery" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1" line="73" column="13" endline="73" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="74" column="13" endline="74" endcolumn="87" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="76" column="9" endline="76" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteNonQuery" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="4" line="85" column="13" endline="85" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="4" line="86" column="13" endline="86" endcolumn="78" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="4" line="87" column="9" endline="87" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1" line="131" column="13" endline="131" endcolumn="61" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="132" column="9" endline="132" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1002" line="142" column="13" endline="142" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1002" line="143" column="13" endline="143" endcolumn="76" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1002" line="144" column="9" endline="144" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteScalar" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1" line="96" column="13" endline="96" endcolumn="61" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="97" column="9" endline="97" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteScalar" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="9" line="107" column="13" endline="107" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="9" line="108" column="13" endline="108" endcolumn="76" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="9" line="109" column="9" endline="109" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteScalar" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="3" line="120" column="17" endline="120" endcolumn="54" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="3" line="121" column="17" endline="121" endcolumn="89" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="3" line="122" column="9" endline="122" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteXmlReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1" line="223" column="12" endline="223" endcolumn="63" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="224" column="9" endline="224" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteXmlReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="5" line="234" column="13" endline="234" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="5" line="235" column="13" endline="235" endcolumn="79" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="5" line="236" column="9" endline="236" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteXmlReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1" line="247" column="13" endline="247" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="248" column="13" endline="248" endcolumn="88" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1" line="249" column="9" endline="249" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="get_ParameterFactory" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="1026" line="41" column="19" endline="41" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="1026" line="41" column="45" endline="41" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="get_Transactions" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.DataAccess">
+      <seqpnt visitcount="5" line="46" column="19" endline="46" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+      <seqpnt visitcount="5" line="46" column="47" endline="46" endcolumn="48" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\DataAccess.cs" />
+    </method>
+    <method name="ExecuteSafeXmlReader" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlExtensions">
+      <seqpnt visitcount="6" line="19" column="13" endline="19" endcolumn="42" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlExtensions.cs" />
+      <seqpnt visitcount="6" line="20" column="9" endline="20" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlExtensions.cs" />
+    </method>
+    <method name="ConvertDbTypeToSqlDbType" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlParameterFactory">
+      <seqpnt visitcount="1033" line="20" column="13" endline="20" endcolumn="28" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1027" line="23" column="21" endline="23" endcolumn="49" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1027" line="24" column="21" endline="24" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="26" column="21" endline="26" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="27" column="21" endline="27" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="29" column="21" endline="29" endcolumn="48" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="30" column="21" endline="30" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="32" column="21" endline="32" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="33" column="21" endline="33" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="35" column="21" endline="35" endcolumn="49" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="36" column="21" endline="36" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="38" column="21" endline="38" endcolumn="47" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="39" column="21" endline="39" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="41" column="21" endline="41" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="42" column="21" endline="42" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="44" column="21" endline="44" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="45" column="21" endline="45" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="47" column="21" endline="47" endcolumn="51" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="48" column="21" endline="48" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="50" column="21" endline="50" endcolumn="56" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="51" column="21" endline="51" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="6" line="53" column="21" endline="53" endcolumn="49" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="6" line="54" column="21" endline="54" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="56" column="21" endline="56" endcolumn="47" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="57" column="21" endline="57" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="59" column="21" endline="59" endcolumn="58" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="60" column="21" endline="60" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="62" column="21" endline="62" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="63" column="21" endline="63" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="65" column="21" endline="65" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="66" column="21" endline="66" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="68" column="21" endline="68" endcolumn="48" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="69" column="21" endline="69" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="71" column="21" endline="71" endcolumn="49" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="72" column="21" endline="72" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="74" column="21" endline="74" endcolumn="106" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="76" column="21" endline="76" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="77" column="21" endline="77" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="79" column="21" endline="79" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="80" column="21" endline="80" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="82" column="21" endline="82" endcolumn="47" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="83" column="21" endline="83" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="85" column="21" endline="85" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="86" column="21" endline="86" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="88" column="21" endline="88" endcolumn="107" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="90" column="21" endline="90" endcolumn="107" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="92" column="21" endline="92" endcolumn="107" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="94" column="21" endline="94" endcolumn="111" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="96" column="21" endline="96" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="97" column="21" endline="97" endcolumn="27" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="0" line="99" column="21" endline="99" endcolumn="114" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1033" line="102" column="13" endline="102" endcolumn="28" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1033" line="103" column="9" endline="103" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+    </method>
+    <method name="Create" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlParameterFactory">
+      <seqpnt visitcount="1033" line="114" column="13" endline="114" endcolumn="99" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1033" line="117" column="13" endline="117" endcolumn="31" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="118" column="17" endline="118" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1032" line="120" column="17" endline="120" endcolumn="37" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1033" line="122" column="13" endline="122" endcolumn="26" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1033" line="123" column="9" endline="123" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+    </method>
+    <method name="Create" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlParameterFactory">
+      <seqpnt visitcount="1" line="134" column="13" endline="134" endcolumn="68" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="135" column="13" endline="135" endcolumn="41" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="137" column="13" endline="137" endcolumn="26" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="138" column="9" endline="138" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+    </method>
+    <method name="Create" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlParameterFactory">
+      <seqpnt visitcount="1" line="150" column="13" endline="150" endcolumn="73" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="151" column="13" endline="151" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="152" column="13" endline="152" endcolumn="30" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="153" column="9" endline="153" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+    </method>
+    <method name="Create" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlParameterFactory">
+      <seqpnt visitcount="1" line="165" column="13" endline="165" endcolumn="73" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="166" column="13" endline="166" endcolumn="35" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="167" column="13" endline="167" endcolumn="30" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="168" column="9" endline="168" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+    </method>
+    <method name="Create" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlParameterFactory">
+      <seqpnt visitcount="1" line="181" column="13" endline="181" endcolumn="73" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="182" column="13" endline="182" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="183" column="13" endline="183" endcolumn="35" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="184" column="13" endline="184" endcolumn="30" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="185" column="9" endline="185" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+    </method>
+    <method name="Create" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlParameterFactory">
+      <seqpnt visitcount="1" line="198" column="13" endline="198" endcolumn="73" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="199" column="13" endline="199" endcolumn="35" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="200" column="13" endline="200" endcolumn="61" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="201" column="13" endline="201" endcolumn="30" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="202" column="9" endline="202" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+    </method>
+    <method name="Create" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlParameterFactory">
+      <seqpnt visitcount="1" line="216" column="13" endline="216" endcolumn="73" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="217" column="13" endline="217" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="218" column="13" endline="218" endcolumn="35" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="219" column="13" endline="219" endcolumn="61" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="220" column="13" endline="220" endcolumn="30" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+      <seqpnt visitcount="1" line="221" column="9" endline="221" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlParameterFactory.cs" />
+    </method>
+    <method name=".ctor" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="6" line="22" column="9" endline="22" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="6" line="24" column="13" endline="24" endcolumn="29" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="25" column="17" endline="25" endcolumn="56" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="6" line="26" column="13" endline="26" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="6" line="27" column="13" endline="27" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="6" line="28" column="9" endline="28" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_AttributeCount" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="48" column="19" endline="48" endcolumn="48" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="48" column="49" endline="48" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_BaseURI" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="60" column="19" endline="60" endcolumn="41" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="60" column="42" endline="60" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="Close" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="6" line="35" column="13" endline="35" endcolumn="28" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="6" line="36" column="13" endline="36" endcolumn="32" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="6" line="37" column="9" endline="37" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_Depth" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="218" line="72" column="19" endline="72" endcolumn="39" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="218" line="72" column="40" endline="72" endcolumn="41" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_EOF" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="83" column="19" endline="83" endcolumn="37" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="83" column="38" endline="83" endcolumn="39" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="GetAttribute" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="98" column="13" endline="98" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="99" column="9" endline="99" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="GetAttribute" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="114" column="13" endline="114" endcolumn="60" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="115" column="9" endline="115" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="GetAttribute" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="129" column="13" endline="129" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="130" column="9" endline="130" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_HasValue" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="140" column="19" endline="140" endcolumn="42" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="140" column="43" endline="140" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_IsEmptyElement" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="81" line="151" column="19" endline="151" endcolumn="48" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="81" line="151" column="49" endline="151" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_LocalName" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="81" line="164" column="19" endline="164" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="81" line="164" column="44" endline="164" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="LookupNamespace" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="176" column="13" endline="176" endcolumn="51" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="177" column="9" endline="177" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="MoveToAttribute" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="189" column="13" endline="189" endcolumn="53" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="190" column="9" endline="190" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="MoveToAttribute" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="201" column="13" endline="201" endcolumn="49" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="202" column="9" endline="202" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="MoveToElement" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="212" column="13" endline="212" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="213" column="9" endline="213" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="MoveToFirstAttribute" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="81" line="223" column="13" endline="223" endcolumn="50" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="81" line="224" column="9" endline="224" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="MoveToNextAttribute" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="234" column="13" endline="234" endcolumn="49" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="235" column="9" endline="235" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_NamespaceURI" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="81" line="258" column="19" endline="258" endcolumn="46" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="81" line="258" column="47" endline="258" endcolumn="48" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_NameTable" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="246" column="19" endline="246" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="246" column="44" endline="246" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_NodeType" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="323" line="270" column="19" endline="270" endcolumn="42" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="323" line="270" column="43" endline="270" endcolumn="44" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_Prefix" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="81" line="282" column="19" endline="282" endcolumn="40" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="81" line="282" column="41" endline="282" endcolumn="42" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="Read" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="218" line="296" column="13" endline="296" endcolumn="34" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="218" line="297" column="9" endline="297" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="ReadAttributeValue" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="309" column="13" endline="309" endcolumn="48" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="310" column="9" endline="310" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_ReadState" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="12" line="321" column="19" endline="321" endcolumn="43" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="12" line="321" column="44" endline="321" endcolumn="45" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="ResolveEntity" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="0" line="332" column="13" endline="332" endcolumn="36" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="0" line="333" column="9" endline="333" endcolumn="10" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+    <method name="get_Value" excluded="false" instrumented="true" class="DataAccessLayer.SqlServer.SqlXmlReader">
+      <seqpnt visitcount="50" line="363" column="19" endline="363" endcolumn="39" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+      <seqpnt visitcount="50" line="363" column="40" endline="363" endcolumn="41" excluded="false" document="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayer\SqlServer\SqlXmlReader.cs" />
+    </method>
+  </module>
+  <module name="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayerTests\bin\Debug\ADO.Net.DataAccessLayerTests.dll" assembly="ADO.Net.DataAccessLayerTests" assemblyIdentity="ADO.Net.DataAccessLayerTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null, processorArchitecture=MSIL" />
+  <module name="C:\Dropbox\Code\ADO.Net\ADO.Net.DataAccessLayerTests\bin\Debug\Utilities.UnitTest.dll" assembly="Utilities.UnitTest" assemblyIdentity="Utilities.UnitTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null, processorArchitecture=MSIL" />
+</coverage>

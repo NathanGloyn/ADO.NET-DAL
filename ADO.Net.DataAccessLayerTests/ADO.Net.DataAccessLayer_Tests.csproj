@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="CommonTestSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="When_constructing_commands.cs" />
     <Compile Include="When_constructing_DataAccess.cs" />
     <Compile Include="When_executing_an_reader_command.cs" />
     <Compile Include="When_executing_a_scalar_command.cs" />

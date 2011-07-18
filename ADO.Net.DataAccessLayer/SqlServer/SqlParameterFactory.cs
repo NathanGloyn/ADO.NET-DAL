@@ -13,7 +13,7 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         /// <param name="dbType">The DbType to convert</param>
         /// <returns>The corresponding SqlDbType</returns>
-        public SqlDbType ConvertDbTypeToSqlDbType(DbType dbType)
+        internal SqlDbType ConvertDbTypeToSqlDbType(DbType dbType)
         {
             SqlDbType sqlType;
 

@@ -13,8 +13,9 @@ namespace DataAccessLayer.SqlServer
     public class DataAccess : IDataAccess
     {
         private IConnection connection;
-        private readonly IParameterCreation _parameterFactory;
-        private readonly ITransactionControl _transactionControl;
+        private readonly IParameterCreation parameterFactory;
+        private readonly ITransactionControl transactionControl;
+
 
         /// <summary>
         /// Allows child classes to pass the connection string to be used for the
@@ -27,8 +28,8 @@ namespace DataAccessLayer.SqlServer
             if (parameterFactory == null) throw new ArgumentNullException("parameterFactory");
 
             connection = new Connection(connectionString);
-            _parameterFactory = parameterFactory;
-            _transactionControl = new TransactionControl(connection);
+            this.parameterFactory = parameterFactory;
+            transactionControl = new TransactionControl(connection);
         }
 
         /// <summary>
@@ -38,17 +39,17 @@ namespace DataAccessLayer.SqlServer
 
         public IParameterCreation ParameterFactory
         {
-            get { return _parameterFactory; }
+            get { return parameterFactory; }
         }
 
         public ITransactionControl Transactions
         {
-            get { return _transactionControl; }
+            get { return transactionControl; }
         }
 
         private Commands CreateCommands()
         {
-            return new Commands(connection, _transactionControl.CurrentTransaction, CommandTimeOut);
+            return new Commands(connection, transactionControl.CurrentTransaction, CommandTimeOut);
         }
 
         /// <summary>
@@ -69,10 +70,8 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DbCommand containing the command executed</returns>
         public int ExecuteNonQuery(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-
             Commands commands = CreateCommands();
             return commands.ExecuteNonQuery(out cmd, storedProcedureName, parameters);
-
         }
 
         /// <summary>
@@ -117,8 +116,8 @@ namespace DataAccessLayer.SqlServer
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(out DbCommand cmd, string storedProcedureName, params DbParameter[] parameters)
         {
-                Commands commands = CreateCommands();
-                return commands.ExecuteScalar(out cmd, storedProcedureName, parameters);
+            Commands commands = CreateCommands();
+            return commands.ExecuteScalar(out cmd, storedProcedureName, parameters);
         }
 
         /// <summary>

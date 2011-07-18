@@ -6,11 +6,6 @@ namespace DataAccessLayer.Interfaces
 {
     public interface ICommands
     {
-        /// <summary>
-        /// Executes a command that does not return a query
-        /// </summary>
-        /// <param name="commandText">Name of stored procedure to execute</param>
-        int ExecuteNonQuery(string commandText);
 
         /// <summary>
         /// Executes a command that does not return a query
@@ -27,13 +22,6 @@ namespace DataAccessLayer.Interfaces
         /// <param name="parameters">DbParameter colleciton to use in executing</param>
         /// <returns>DbCommand containing the command executed</returns>
         int ExecuteNonQuery(out DbCommand cmd, string commandText, params DbParameter[] parameters);
-
-        /// <summary>
-        /// Executes a command that returns a single value
-        /// </summary>
-        /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <returns>Object holding result of execution of database</returns>
-        object ExecuteScalar(string commandText);
 
         /// <summary>
         /// Executes a command that returns a single value
@@ -56,23 +44,9 @@ namespace DataAccessLayer.Interfaces
         /// Executes a command and returns a data reader
         /// </summary>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <returns>SqlDataReader allowing access to results from command</returns>
-        DbDataReader ExecuteReader(string commandText);
-
-        /// <summary>
-        /// Executes a command and returns a data reader
-        /// </summary>
-        /// <param name="commandText">Name of stored procedure to execute</param>
         /// <param name="parameters">DbParameter colleciton to use in executing</param>
         /// <returns>SqlDataReader allowing access to results from command</returns>
         DbDataReader ExecuteReader(string commandText, params DbParameter[] parameters);
-
-        /// <summary>
-        /// Executes a command and returns a DataTable
-        /// </summary>
-        /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <returns>DataTable populated with data from executing stored procedure</returns>
-        DataTable ExecuteDataTable(string commandText);
 
         /// <summary>
         /// Executes a command and returns a DataTable
@@ -95,13 +69,6 @@ namespace DataAccessLayer.Interfaces
         /// Executes a command and returns a DataTable
         /// </summary>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <returns>DataTable populated with data from executing stored procedure</returns>
-        DataSet ExecuteDataSet(string commandText);
-
-        /// <summary>
-        /// Executes a command and returns a DataTable
-        /// </summary>
-        /// <param name="commandText">Name of stored procedure to execute</param>
         /// <param name="parameters">SqlParameter colleciton to use in executing</param>
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         DataSet ExecuteDataSet(string commandText, params DbParameter[] parameters);
@@ -114,13 +81,6 @@ namespace DataAccessLayer.Interfaces
         /// <param name="parameters">SqlParameter colleciton to use in executing</param>
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         DataSet ExecuteDataSet(out DbCommand cmd, string commandText, params DbParameter[] parameters);
-
-        /// <summary>
-        /// Executes a command and returns an XML reader.
-        /// </summary>
-        /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <returns>An instance of XmlReader pointing to the stream of xml returned</returns>
-        XmlReader ExecuteXmlReader(string commandText);
 
         /// <summary>
         /// Executes a command and returns an XML reader.
