@@ -150,3 +150,38 @@ BEGIN
 	FOR XML PATH ('Entry'), ROOT ('Entries') 
 END
 GO
+
+IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectAllFromTestTableAsXmlUsingAttributes')
+	DROP PROCEDURE [dbo].[SelectAllFromTestTableAsXmlUsingAttributes]
+GO
+
+CREATE PROCEDURE [dbo].[SelectAllFromTestTableAsXmlUsingAttributes]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT	TestKey		'@Key', 
+			TestValue	'@Value' 
+	FROM	[dbo].[TestTable]
+	ORDER BY TestKey
+	FOR XML PATH ('Entry'), ROOT ('Entries') 
+END
+GO
+
+IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectTestTableAsXmlWithAttributesUsingNamespaces')
+	DROP PROCEDURE [dbo].[SelectTestTableAsXmlWithAttributesUsingNamespaces]
+GO
+
+CREATE PROCEDURE [dbo].[SelectTestTableAsXmlWithAttributesUsingNamespaces]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	WITH XMLNAMESPACES ('uri' as ns1)
+    SELECT	TestKey		'@ns1:Key', 
+			TestValue	'@ns1:Value' 
+	FROM	[dbo].[TestTable]
+	ORDER BY TestKey
+	FOR XML PATH ('ns1:Entry'), ROOT ('ns1:Entries') 
+END
+GO

@@ -46,6 +46,7 @@ namespace DataAccessLayer.SqlServer
             get { return transactionControl; }
         }
 
+
         /// <summary>
         /// Executes a command that does not return a query
         /// </summary>
@@ -183,6 +184,8 @@ namespace DataAccessLayer.SqlServer
         {
             return new Commands(connection, transactionControl.CurrentTransaction, CommandTimeOut);
         }
+
+        private delegate TResult FuncOut<T1, T2, TResult>(T1 arg1, out T2 arg2);
 
         private T RunCommand<T>(Func<Commands, T> toRun)
         {

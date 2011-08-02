@@ -63,9 +63,11 @@
     <Compile Include="When_constructing_DataAccess.cs" />
     <Compile Include="When_executing_an_reader_command.cs" />
     <Compile Include="When_executing_a_scalar_command.cs" />
+    <Compile Include="When_executing_XmlReader_command.cs" />
     <Compile Include="When_using_SqlDataAccess.cs" />
     <Compile Include="When_creating_Db_Parameters.cs" />
     <Compile Include="When_using_transactions.cs" />
+    <Compile Include="When_using_XmlReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestScripts\CommonCreateScripts\01_create_tables.sql" />
