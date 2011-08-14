@@ -9,14 +9,15 @@ namespace ADO.Net.DataAccessLayerTests
     {
         protected const string ConnectionName = "sqlTest";
         protected static DatabaseSupport DbHelper;
-
+        protected string ConnectionString;
         protected SqlParameterFactory ParameterFactory;
         protected DataAccess DataAccess;
 
         [TestFixtureSetUp]
         public void InitializeTests()
         {
-            DbHelper = new DatabaseSupport(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString);
+            ConnectionString = ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString;
+            DbHelper = new DatabaseSupport(ConnectionString);
 
             DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\01_create_tables.sql");
             DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\02_create_stored_procedures.sql");
