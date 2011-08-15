@@ -70,9 +70,34 @@ namespace ADO.Net.DataAccessLayerTests
             DataTable result = DataAccess.ExecuteDataTable(out cmd, "SelectAllButFromTestTable", DataAccess.ParameterFactory.Create("@ExcludeKey", DbType.AnsiString, "key1"));
 
             Assert.IsNotNull(cmd);
+            Assert.That(cmd.CommandType, Is.EqualTo(CommandType.StoredProcedure));
             Assert.AreEqual("key1", (string)cmd.Parameters["@ExcludeKey"].Value);
 
             Assert.AreEqual(4, result.Rows.Count);
+        }
+
+        [Test()]
+        public void Should_execute_command_Text_returning_a_populated_DataTable_and_command_object()
+        {
+            DbCommand cmd;
+            DataTable result = DataAccess.ExecuteDataTable(out cmd, "SELECT * FROM TestTable WHERE TestKey !=  'key1'");
+
+            Assert.IsNotNull(cmd);
+            Assert.That(cmd.CommandType, Is.EqualTo(CommandType.Text));
+
+            Assert.AreEqual(4, result.Rows.Count);
+        }
+
+        [Test()]
+        public void Should_execute_TableDirect_returning_a_populated_DataTable_and_command_object()
+        {
+            DbCommand cmd;
+            DataTable result = DataAccess.ExecuteDataTable(out cmd, "TestTable");
+
+            Assert.IsNotNull(cmd);
+            Assert.That(cmd.CommandType, Is.EqualTo(CommandType.TableDirect));
+
+            Assert.AreEqual(5, result.Rows.Count);
         }
 
         /// <summary>

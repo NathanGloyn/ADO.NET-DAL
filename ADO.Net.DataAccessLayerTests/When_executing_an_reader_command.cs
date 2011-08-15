@@ -25,6 +25,20 @@ namespace ADO.Net.DataAccessLayerTests
             Assert.AreEqual(5, count);
         }
 
+        [Test()]
+        public void Should_execute_a_command_Text_with_no_parameters_returning_a_IDataReader()
+        {
+            IDataReader reader = DataAccess.ExecuteReader("SELECT * FROM TestTable");
+
+            Assert.IsNotNull(reader);
+
+            int count = 0;
+            while (reader.Read())
+                count++;
+
+            Assert.AreEqual(5, count);
+        }
+
         /// <summary>
         ///A test for ExecuteReader(sp, params)
         ///</summary>

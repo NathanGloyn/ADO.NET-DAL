@@ -1,7 +1,7 @@
 using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
+using DataAccessLayer.SqlServer;
 using NUnit.Framework;
 
 namespace ADO.Net.DataAccessLayerTests
@@ -9,11 +9,17 @@ namespace ADO.Net.DataAccessLayerTests
     [TestFixture]
     public class When_determinng_type_of_command:CommonTestSetup
     {
+        private string connectionStringMinPermissions;
+
+        public When_determinng_type_of_command()
+        {
+            connectionStringMinPermissions = ConfigurationManager.ConnectionStrings["MinPermission"].ConnectionString;
+        }
 
         [Test] 
         public void Should_return_type_as_table_direct()
         {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(ConnectionString);
+            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
 
             Assert.That(decider.GetCommandType("TestTable"), Is.EqualTo(CommandType.TableDirect));
         }
@@ -21,74 +27,41 @@ namespace ADO.Net.DataAccessLayerTests
         [Test]
         public void Should_return_type_as_Text_if_table_not_found()
         {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(ConnectionString);
+            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
 
             Assert.That(decider.GetCommandType("MissingTable"), Is.EqualTo(CommandType.Text));            
         }
 
-
-
-    }
-
-    public class SqlCommandTypeDecider
-    {
-        private SortedList<string,CommandType> dbObjects;
-        
-
-        public SqlCommandTypeDecider(string connectionString)
+        [Test]
+        public void Should_return_type_as_Table_for_View()
         {
-            dbObjects = new SortedList<string, CommandType>();
-            PopulateCacheData(connectionString);
+            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
+
+            Assert.That(decider.GetCommandType("TestView"), Is.EqualTo(CommandType.TableDirect));            
         }
 
-        private void PopulateCacheData(string connectionString)
+        [Test]
+        public void Should_return_type_as_StoredProcedure_for_existng_procedure()
         {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                RetrieveTables(connection);
-                RetrieveViews(connection);
-                RetrieveStoredProcedures(connection);
-            } 
-            
+            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(ConnectionString);
+
+            Assert.That(decider.GetCommandType("AddToTestTable"), Is.EqualTo(CommandType.StoredProcedure));
         }
 
-        public CommandType GetCommandType(string commandText)
+        [Test]
+        public void Should_return_type_as_Text_for_sql_string_with_space_between_keywords()
         {
-            if (dbObjects.ContainsKey(commandText))
-            {
-                CommandType toReturn;
+            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(ConnectionString);
 
-                dbObjects.TryGetValue(commandText, out toReturn);
-
-                return toReturn;
-            }
-
-            return CommandType.Text;
+            Assert.That(decider.GetCommandType("SELECT * FROM TestTable"), Is.EqualTo(CommandType.Text));            
         }
 
-        private void RetrieveTables(SqlConnection connection)
+        [Test]
+        public void Should_return_type_as_Text_for_sql_string_with_tab_between_keywords()
         {
-            ExtractSchemaDetail(connection, "Tables", "table_name");
-        }
+            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(ConnectionString);
 
-        private void RetrieveViews(SqlConnection connection)
-        {
-            ExtractSchemaDetail(connection, "Views", "table_name");
-        }
-
-        private void RetrieveStoredProcedures(SqlConnection connection)
-        {
-            ExtractSchemaDetail(connection, "Procedures", "specific_name");
-        }
-
-        private void ExtractSchemaDetail(SqlConnection connection, string collectionName, string columnName)
-        {
-            var tables = connection.GetSchema(collectionName);
-            foreach (DataRow row in tables.Rows)
-            {
-                dbObjects.Add(row[columnName].ToString(), CommandType.TableDirect);
-            }
+            Assert.That(decider.GetCommandType("SELECT\t*\tFROM\tTestTable"), Is.EqualTo(CommandType.Text));
         }
     }
 }

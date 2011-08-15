@@ -21,6 +21,7 @@ namespace ADO.Net.DataAccessLayerTests
 
             DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\01_create_tables.sql");
             DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\02_create_stored_procedures.sql");
+            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\03_create_views.sql");
 
             ParameterFactory = new SqlParameterFactory();
         }
@@ -28,7 +29,7 @@ namespace ADO.Net.DataAccessLayerTests
         [SetUp]
         public void Setup()
         {
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\03_insert_test_data.sql");
+            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\04_insert_test_data.sql");
             DataAccess = new DataAccess(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString, ParameterFactory);
         }
     }

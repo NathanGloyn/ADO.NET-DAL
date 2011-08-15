@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using DataAccessLayer.Interfaces;
@@ -6,14 +7,15 @@ namespace DataAccessLayer.SqlServer
 {
     internal class Connection : IConnection
     {
-        private readonly string connectionString;
+
+        public string ConnectionString { get; private set; }
 
         public IDbConnection DatabaseConnection { get; private set; }
         public bool InTransaction{get; set;}
 
         internal Connection(string connectionString)
         {
-            this.connectionString = connectionString;
+            ConnectionString = connectionString;
         }
 
         /// <summary>
@@ -33,7 +35,7 @@ namespace DataAccessLayer.SqlServer
         {
             if (DatabaseConnection == null || DatabaseConnection.State != ConnectionState.Open)
             {
-                DatabaseConnection = new SqlConnection(connectionString);
+                DatabaseConnection = new SqlConnection(ConnectionString);
                 DatabaseConnection.Open();
             }
         }        

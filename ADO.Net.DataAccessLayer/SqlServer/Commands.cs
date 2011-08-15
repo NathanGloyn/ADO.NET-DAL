@@ -12,6 +12,7 @@ namespace DataAccessLayer.SqlServer
         private readonly SqlTransaction currentTransaction;
         private readonly IConnection currentConnection;
         private readonly int commandTimeOut;
+        private readonly SqlCommandTypeDecider decider;
 
         internal Commands(IConnection currentConnection, IDbTransaction currentTransaction, int commandTimeOut)
         {
@@ -20,6 +21,7 @@ namespace DataAccessLayer.SqlServer
             this.currentTransaction = currentTransaction as SqlTransaction;
             this.currentConnection = currentConnection;
             this.commandTimeOut = commandTimeOut;
+            this.decider = new SqlCommandTypeDecider(this.currentConnection.ConnectionString);
         }
 
         /// <summary>
@@ -81,7 +83,7 @@ namespace DataAccessLayer.SqlServer
 
             using (SqlCommand cmdReader = new SqlCommand(commandText, (SqlConnection)currentConnection.DatabaseConnection))
             {
-                cmdReader.CommandType = CommandType.StoredProcedure;
+                cmdReader.CommandType = decider.GetCommandType(commandText);
                 cmdReader.Transaction = currentTransaction;
 
                 if (parameters != null && parameters.Length > 0)
@@ -231,15 +233,15 @@ namespace DataAccessLayer.SqlServer
         /// <summary>
         /// Builds a SqlCommand to execute
         /// </summary>
-        /// <param name="storedProcedureName">Name of stored procedure to execute</param>
+        /// <param name="commandText">Name of stored procedure to execute</param>
         /// <param name="parameters">Param array of DbParameter objects to use with command</param>
         /// <returns>SqlCommand object ready for use</returns>
-        private SqlCommand BuildCommand(string storedProcedureName, params DbParameter[] parameters)
+        private SqlCommand BuildCommand(string commandText, params DbParameter[] parameters)
         {
-            SqlCommand newCommand = new SqlCommand(storedProcedureName, (SqlConnection) currentConnection.DatabaseConnection)
+            SqlCommand newCommand = new SqlCommand(commandText, (SqlConnection) currentConnection.DatabaseConnection)
             {
                 Transaction = currentTransaction,
-                CommandType = CommandType.StoredProcedure
+                CommandType = decider.GetCommandType(commandText)
             };
 
             if (commandTimeOut > 0)
