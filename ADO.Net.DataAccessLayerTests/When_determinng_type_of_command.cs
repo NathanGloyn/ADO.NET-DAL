@@ -46,7 +46,8 @@ namespace ADO.Net.DataAccessLayerTests
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                RetrieveTablesAndViews(connection);
+                RetrieveTables(connection);
+                RetrieveViews(connection);
                 RetrieveStoredProcedures(connection);
             } 
             
@@ -66,29 +67,28 @@ namespace ADO.Net.DataAccessLayerTests
             return CommandType.Text;
         }
 
-        private void RetrieveTablesAndViews(SqlConnection connection)
+        private void RetrieveTables(SqlConnection connection)
         {
-            using (SqlCommand command = new SqlCommand("SELECT TABLE_NAME FROM information_schema.tables ORDER BY 2", connection))
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    dbObjects.Add(reader.GetString(0), CommandType.TableDirect);
-                }   
-            }
+            ExtractSchemaDetail(connection, "Tables", "table_name");
+        }
+
+        private void RetrieveViews(SqlConnection connection)
+        {
+            ExtractSchemaDetail(connection, "Views", "table_name");
         }
 
         private void RetrieveStoredProcedures(SqlConnection connection)
         {
-            using (SqlCommand command = new SqlCommand("select Specific_Name from information_schema.routines where routine_type = 'PROCEDURE' and Left(Routine_Name, 3) NOT IN ('sp_', 'xp_', 'ms_')", connection))
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    dbObjects.Add(reader.GetString(0), CommandType.StoredProcedure);
-                }
-            }
+            ExtractSchemaDetail(connection, "Procedures", "specific_name");
         }
 
+        private void ExtractSchemaDetail(SqlConnection connection, string collectionName, string columnName)
+        {
+            var tables = connection.GetSchema(collectionName);
+            foreach (DataRow row in tables.Rows)
+            {
+                dbObjects.Add(row[columnName].ToString(), CommandType.TableDirect);
+            }
+        }
     }
 }
