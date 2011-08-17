@@ -43,7 +43,7 @@ namespace ADO.Net.DataAccessLayerTests
         [Test]
         public void Should_return_type_as_StoredProcedure_for_existng_procedure()
         {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(ConnectionString);
+            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
 
             Assert.That(decider.GetCommandType("AddToTestTable"), Is.EqualTo(CommandType.StoredProcedure));
         }

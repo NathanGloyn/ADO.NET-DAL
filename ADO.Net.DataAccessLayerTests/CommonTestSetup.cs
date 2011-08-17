@@ -9,28 +9,35 @@ namespace ADO.Net.DataAccessLayerTests
     {
         protected const string ConnectionName = "sqlTest";
         protected static DatabaseSupport DbHelper;
+
         protected string ConnectionString;
         protected SqlParameterFactory ParameterFactory;
         protected DataAccess DataAccess;
+
+        public CommonTestSetup()
+        {
+           DbHelper = new DatabaseSupport(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString);
+        }
 
         [TestFixtureSetUp]
         public void InitializeTests()
         {
             ConnectionString = ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString;
-            DbHelper = new DatabaseSupport(ConnectionString);
-
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\01_create_tables.sql");
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\02_create_stored_procedures.sql");
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\03_create_views.sql");
-
             ParameterFactory = new SqlParameterFactory();
         }
 
         [SetUp]
         public void Setup()
         {
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\04_insert_test_data.sql");
+            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\05_insert_test_data.sql");
             DataAccess = new DataAccess(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString, ParameterFactory);
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\06_reset_data.sql");
+        }
+
     }
 }

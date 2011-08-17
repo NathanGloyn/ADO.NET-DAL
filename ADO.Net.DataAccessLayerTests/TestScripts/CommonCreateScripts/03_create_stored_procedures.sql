@@ -24,6 +24,9 @@ BEGIN
 END
 GO
 
+GRANT EXECUTE On [dbo].[AddToTestTable] TO [MinimumPermission]
+GO
+
 IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'ResetTestTable')
 	DROP PROCEDURE [dbo].[ResetTestTable]
 GO
@@ -75,6 +78,22 @@ BEGIN
 
     SELECT TestKey, TestValue FROM [dbo].[TestTable] ORDER BY TestKey
 END
+GO
+
+IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectAllFromTestTable')
+	DROP PROCEDURE [dbo].[Sproc with spaces in name]
+GO
+
+CREATE PROCEDURE [dbo].[Sproc with spaces in name]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT TestKey, TestValue FROM [dbo].[TestTable] ORDER BY TestKey
+END
+GO
+
+GRANT EXECUTE On [dbo].[Sproc with spaces in name] TO [MinimumPermission]
 GO
 
 IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectAllButFromTestTable')
