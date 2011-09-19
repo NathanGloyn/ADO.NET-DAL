@@ -17,3 +17,6 @@ GO
 
 CREATE USER [MinimumPermission] FOR LOGIN [MinimumPermission] WITH DEFAULT_SCHEMA=[dbo]
 GO
+
+exec sp_addrolemember db_datareader, [MinimumPermission]
+go

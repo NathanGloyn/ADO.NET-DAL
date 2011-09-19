@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("DBG")]
-[assembly: AssemblyProduct("BH.DataAccessLayerTests")]
+[assembly: AssemblyProduct("DataAccessLayerTests")]
 [assembly: AssemblyCopyright("Copyright © DBG 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

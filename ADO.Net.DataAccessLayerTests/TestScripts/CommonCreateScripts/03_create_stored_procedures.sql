@@ -54,6 +54,9 @@ BEGIN
 END
 GO
 
+GRANT EXECUTE On [dbo].[SelectFromTestTable] TO [MinimumPermission]
+GO
+
 IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectOneFromTestTable')
 	DROP PROCEDURE [dbo].[SelectOneFromTestTable]
 GO
@@ -65,6 +68,9 @@ BEGIN
 
     SELECT TestValue FROM [dbo].[TestTable] WHERE TestKey = 'key1'
 END
+GO
+
+GRANT EXECUTE On [dbo].[SelectOneFromTestTable] TO [MinimumPermission]
 GO
 
 IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectAllFromTestTable')
@@ -80,7 +86,10 @@ BEGIN
 END
 GO
 
-IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectAllFromTestTable')
+GRANT EXECUTE On [dbo].[SelectAllFromTestTable] TO [MinimumPermission]
+GO
+
+IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'Sproc with spaces in name')
 	DROP PROCEDURE [dbo].[Sproc with spaces in name]
 GO
 
@@ -110,6 +119,9 @@ BEGIN
 END
 GO
 
+GRANT EXECUTE On [dbo].[SelectAllButFromTestTable] TO [MinimumPermission]
+GO
+
 IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'DeleteFromTestTable')
 	DROP PROCEDURE [dbo].[DeleteFromTestTable]
 GO
@@ -123,6 +135,9 @@ BEGIN
 END
 GO
 
+GRANT EXECUTE On [dbo].[DeleteFromTestTable] TO [MinimumPermission]
+GO
+
 IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'DeleteOneFromTestTable')
 	DROP PROCEDURE [dbo].[DeleteOneFromTestTable]
 GO
@@ -133,6 +148,9 @@ BEGIN
 
     DELETE FROM [dbo].[TestTable] WHERE TestKey = 'key1'
 END
+GO
+
+GRANT EXECUTE On [dbo].[DeleteOneFromTestTable] TO [MinimumPermission]
 GO
 
 IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectAllFromTestTableAsXml')
@@ -149,6 +167,9 @@ BEGIN
 	FROM	[dbo].[TestTable] ORDER BY TestKey
 	FOR XML PATH ('Entry'), ROOT ('Entries')
 END
+GO
+
+GRANT EXECUTE On [dbo].[SelectAllFromTestTableAsXml] TO [MinimumPermission]
 GO
 
 IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectAllButFromTestTableAsXml')
@@ -170,6 +191,9 @@ BEGIN
 END
 GO
 
+GRANT EXECUTE On [dbo].[SelectAllButFromTestTableAsXml] TO [MinimumPermission]
+GO
+
 IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectAllFromTestTableAsXmlUsingAttributes')
 	DROP PROCEDURE [dbo].[SelectAllFromTestTableAsXmlUsingAttributes]
 GO
@@ -185,6 +209,9 @@ BEGIN
 	ORDER BY TestKey
 	FOR XML PATH ('Entry'), ROOT ('Entries') 
 END
+GO
+
+GRANT EXECUTE On [dbo].[SelectAllFromTestTableAsXmlUsingAttributes] TO [MinimumPermission]
 GO
 
 IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectTestTableAsXmlWithAttributesUsingNamespaces')
@@ -203,4 +230,7 @@ BEGIN
 	ORDER BY TestKey
 	FOR XML PATH ('ns1:Entry'), ROOT ('ns1:Entries') 
 END
+GO
+
+GRANT EXECUTE On [dbo].[SelectTestTableAsXmlWithAttributesUsingNamespaces] TO [MinimumPermission]
 GO

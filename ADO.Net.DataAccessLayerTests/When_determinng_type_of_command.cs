@@ -63,5 +63,13 @@ namespace ADO.Net.DataAccessLayerTests
 
             Assert.That(decider.GetCommandType("SELECT\t*\tFROM\tTestTable"), Is.EqualTo(CommandType.Text));
         }
+
+        //[Test]
+        //public void Should_return_type_as_StoredProcedure_for_existng_procedure_()
+        //{
+        //    SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
+
+        //    Assert.That(decider.GetCommandType("AddToTestTable"), Is.EqualTo(CommandType.StoredProcedure));
+        //}
     }
 }

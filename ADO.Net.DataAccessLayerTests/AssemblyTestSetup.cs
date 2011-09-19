@@ -9,6 +9,7 @@ namespace ADO.Net.DataAccessLayerTests
     {
         protected const string ConnectionName = "sqlTest";
 
+        [SetUp]
         public void Initalize()
         {
             DatabaseSupport DbHelper = new DatabaseSupport(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString);

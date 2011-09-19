@@ -19,17 +19,19 @@ namespace DataAccessLayer.SqlServer
 
         public CommandType GetCommandType(string commandText)
         {
-            if (commandText.Split(' ','\t').Length == 1)
-            {
-                if (dbObjects.ContainsKey(commandText))
+
+                if (commandText.Split(' ', '\t').Length == 1)
                 {
-                    CommandType toReturn;
+                    if (dbObjects.ContainsKey(commandText))
+                    {
+                        CommandType toReturn;
 
-                    dbObjects.TryGetValue(commandText, out toReturn);
+                        dbObjects.TryGetValue(commandText, out toReturn);
 
-                    return toReturn;
+                        return toReturn;
+                    }
                 }
-            }
+
 
             return CommandType.Text;
         }

@@ -82,7 +82,7 @@ namespace ADO.Net.DataAccessLayerTests
                     }
                 }
             }
-            catch (System.Exception ex)
+            catch
             {
                 //Clear all pools to ensure other tests will run sucessfully
                 SqlConnection.ClearAllPools();
