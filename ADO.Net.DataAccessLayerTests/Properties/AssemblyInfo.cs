@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Common.DataAccessLayer")]
+[assembly: AssemblyTitle("ADO.Net.DataAccessLayerTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DBG")]
-[assembly: AssemblyProduct("DataAccessLayerTests")]
-[assembly: AssemblyCopyright("Copyright © DBG 2008")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ADO.Net.DataAccessLayerTests")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

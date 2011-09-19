@@ -64,9 +64,12 @@
     <Compile Include="When_constructing_DataAccess.cs" />
     <Compile Include="When_determinng_type_of_command.cs" />
     <Compile Include="When_executing_an_reader_command.cs" />
+    <Compile Include="When_executing_a_command_and_returning_a_dataset.cs" />
+    <Compile Include="When_executing_a_command_returning_a_datatable.cs" />
     <Compile Include="When_executing_a_scalar_command.cs" />
+    <Compile Include="When_executing_commands.cs" />
     <Compile Include="When_executing_XmlReader_command.cs" />
-    <Compile Include="When_using_SqlDataAccess.cs" />
+    <Compile Include="When_used_for_multiple_commands.cs" />
     <Compile Include="When_creating_Db_Parameters.cs" />
     <Compile Include="When_using_transactions.cs" />
     <Compile Include="When_using_XmlReader.cs" />

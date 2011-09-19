@@ -20,20 +20,34 @@ namespace DataAccessLayer.SqlServer
         public CommandType GetCommandType(string commandText)
         {
 
-                if (commandText.Split(' ', '\t').Length == 1)
-                {
-                    if (dbObjects.ContainsKey(commandText))
-                    {
-                        CommandType toReturn;
+            if (commandText.Contains("["))
+            {
+                commandText = commandText.Replace("[", "");
+                commandText = commandText.Replace("]", "");
+                return TryGetStoredProcedure(commandText);
+            }
 
-                        dbObjects.TryGetValue(commandText, out toReturn);
-
-                        return toReturn;
-                    }
-                }
-
+            if (commandText.Split(' ', '\t').Length == 1)
+            {
+                return TryGetStoredProcedure(commandText);
+            }
 
             return CommandType.Text;
+        }
+
+        private CommandType TryGetStoredProcedure(string commandText)
+        {
+            if (dbObjects.ContainsKey(commandText))
+            {
+                CommandType toReturn;
+
+                dbObjects.TryGetValue(commandText, out toReturn);
+
+                return toReturn;
+            }
+
+            return CommandType.Text;
+
         }
 
         private void PopulateCacheData(string connectionString)
@@ -44,15 +58,9 @@ namespace DataAccessLayer.SqlServer
                 object lockObject = new object();
                 lock (lockObject)
                 {
-                    RetrieveTablesAndViews(connection);
                     RetrieveStoredProcedures(connection);
                 }
             }
-        }
-
-        private void RetrieveTablesAndViews(SqlConnection connection)
-        {
-            ExtractSchemaDetail(connection, "Tables", "table_name", CommandType.TableDirect);
         }
 
         private void RetrieveStoredProcedures(SqlConnection connection)

@@ -8,11 +8,11 @@ using DataAccessLayer.Interfaces;
 namespace DataAccessLayer.SqlServer
 {
     /// <summary>
-    /// Base class used by all concrete classes in DataAccessLayer
+    /// Concrete facade hiding actual database interaction
     /// </summary>
     public class DataAccess : IDataAccess
     {
-        private IConnection connection;
+        private readonly IConnection connection;
         private readonly IParameterCreation parameterFactory;
         private readonly ITransactionControl transactionControl;
         
@@ -41,6 +41,9 @@ namespace DataAccessLayer.SqlServer
             get { return parameterFactory; }
         }
 
+        /// <summary>
+        /// Provides access to the Transaction control object
+        /// </summary>
         public ITransactionControl Transactions
         {
             get { return transactionControl; }
@@ -56,8 +59,7 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DbCommand containing the command executed</returns>
         public int ExecuteNonQuery(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
-            Commands commands = CreateCommand();
-            return commands.ExecuteNonQuery(out cmd, commandText, parameters);
+            return CreateCommand().ExecuteNonQuery(out cmd, commandText, parameters);
         }
 
         /// <summary>
@@ -90,8 +92,7 @@ namespace DataAccessLayer.SqlServer
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
-            Commands commands = CreateCommand();
-            return commands.ExecuteScalar(out cmd, commandText, parameters);
+            return  CreateCommand().ExecuteScalar(out cmd, commandText, parameters);
         }
 
         /// <summary>
@@ -102,8 +103,7 @@ namespace DataAccessLayer.SqlServer
         /// <returns>SqlDataReader allowing access to results from command</returns>
         public DbDataReader ExecuteReader(string commandText, params DbParameter[] parameters)
         {
-            Commands commands = CreateCommand();
-            return commands.ExecuteReader(commandText, parameters);
+            return CreateCommand().ExecuteReader(commandText, parameters);
         }
 
 
@@ -127,8 +127,7 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing command</returns>
         public DataTable ExecuteDataTable(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
-            Commands commands = CreateCommand();
-            return commands.ExecuteDataTable(out cmd, commandText, parameters);
+            return CreateCommand().ExecuteDataTable(out cmd, commandText, parameters);
         }
 
         /// <summary>
@@ -151,8 +150,7 @@ namespace DataAccessLayer.SqlServer
         /// <returns>DataTable populated with data from executing command</returns>
         public DataSet ExecuteDataSet(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
-            Commands commands = CreateCommand();
-            return commands.ExecuteDataSet(out cmd, commandText, parameters);
+            return CreateCommand().ExecuteDataSet(out cmd, commandText, parameters);
         }
 
 
@@ -176,16 +174,13 @@ namespace DataAccessLayer.SqlServer
         /// <returns>An instance of XmlReader pointing to the stream of xml returned</returns>
         public XmlReader ExecuteXmlReader(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
-            Commands commands = CreateCommand();
-            return commands.ExecuteXmlReader(out cmd, commandText, parameters);
+            return CreateCommand().ExecuteXmlReader(out cmd, commandText, parameters);
         }
 
         private Commands CreateCommand()
         {
             return new Commands(connection, transactionControl.CurrentTransaction, CommandTimeOut);
         }
-
-        private delegate TResult FuncOut<T1, T2, TResult>(T1 arg1, out T2 arg2);
 
         private T RunCommand<T>(Func<Commands, T> toRun)
         {

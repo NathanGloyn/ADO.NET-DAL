@@ -16,13 +16,6 @@ namespace ADO.Net.DataAccessLayerTests
             connectionStringMinPermissions = ConfigurationManager.ConnectionStrings["MinPermission"].ConnectionString;
         }
 
-        [Test] 
-        public void Should_return_type_as_table_direct()
-        {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
-
-            Assert.That(decider.GetCommandType("TestTable"), Is.EqualTo(CommandType.TableDirect));
-        }
 
         [Test]
         public void Should_return_type_as_Text_if_table_not_found()
@@ -32,13 +25,6 @@ namespace ADO.Net.DataAccessLayerTests
             Assert.That(decider.GetCommandType("MissingTable"), Is.EqualTo(CommandType.Text));            
         }
 
-        [Test]
-        public void Should_return_type_as_Table_for_View()
-        {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
-
-            Assert.That(decider.GetCommandType("TestView"), Is.EqualTo(CommandType.TableDirect));            
-        }
 
         [Test]
         public void Should_return_type_as_StoredProcedure_for_existng_procedure()
@@ -64,12 +50,12 @@ namespace ADO.Net.DataAccessLayerTests
             Assert.That(decider.GetCommandType("SELECT\t*\tFROM\tTestTable"), Is.EqualTo(CommandType.Text));
         }
 
-        //[Test]
-        //public void Should_return_type_as_StoredProcedure_for_existng_procedure_()
-        //{
-        //    SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
+        [Test]
+        public void Should_return_type_as_StoredProcedure_for_existng_procedure_with_space_in_name()
+        {
+            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
 
-        //    Assert.That(decider.GetCommandType("AddToTestTable"), Is.EqualTo(CommandType.StoredProcedure));
-        //}
+            Assert.That(decider.GetCommandType("[Sproc with spaces in name]"), Is.EqualTo(CommandType.StoredProcedure));
+        }
     }
 }
