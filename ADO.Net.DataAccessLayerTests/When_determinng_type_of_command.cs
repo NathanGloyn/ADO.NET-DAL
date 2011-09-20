@@ -10,10 +10,12 @@ namespace ADO.Net.DataAccessLayerTests
     public class When_determinng_type_of_command:CommonTestSetup
     {
         private string connectionStringMinPermissions;
+        private string connectionStringTestSchemaOwnerPermissions;
 
         public When_determinng_type_of_command()
         {
             connectionStringMinPermissions = ConfigurationManager.ConnectionStrings["MinPermission"].ConnectionString;
+            connectionStringTestSchemaOwnerPermissions = ConfigurationManager.ConnectionStrings["TestSchemaOwnerPermission"].ConnectionString;
         }
 
 
@@ -56,6 +58,22 @@ namespace ADO.Net.DataAccessLayerTests
             SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
 
             Assert.That(decider.GetCommandType("[Sproc with spaces in name]"), Is.EqualTo(CommandType.StoredProcedure));
+        }
+
+        [Test]
+        public void Should_not_return_StoredProcedure_when_procedure_is_in_another_schema_user_has_no_access_to()
+        {
+            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
+
+            Assert.That(decider.GetCommandType("[TestSP]"), Is.EqualTo(CommandType.Text));            
+        }
+
+        [Test]
+        public void Should_return_StoredProcedure_when_procedure_is_in_another_schema_user_access_to()
+        {
+            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringTestSchemaOwnerPermissions);
+
+            Assert.That(decider.GetCommandType("[TestSP]"), Is.EqualTo(CommandType.StoredProcedure));
         }
     }
 }

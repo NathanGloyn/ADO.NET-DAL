@@ -77,10 +77,11 @@
   <ItemGroup>
     <Content Include="TestScripts\CommonCreateScripts\02_create_tables.sql" />
     <Content Include="TestScripts\CommonCreateScripts\03_create_stored_procedures.sql" />
-    <Content Include="TestScripts\CommonCreateScripts\05_insert_test_data.sql" />
+    <Content Include="TestScripts\CommonCreateScripts\06_insert_test_data.sql" />
     <Content Include="TestScripts\CommonCreateScripts\04_create_views.sql" />
     <Content Include="TestScripts\CommonCreateScripts\01_create_login_and_user.sql" />
-    <Content Include="TestScripts\CommonCreateScripts\06_reset_data.sql" />
+    <Content Include="TestScripts\CommonCreateScripts\07_reset_data.sql" />
+    <Content Include="TestScripts\CommonCreateScripts\05_create_test_schmea_and_objects.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

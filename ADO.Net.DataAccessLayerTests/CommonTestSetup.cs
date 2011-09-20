@@ -29,14 +29,15 @@ namespace ADO.Net.DataAccessLayerTests
         [SetUp]
         public void Setup()
         {
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\05_insert_test_data.sql");
+            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\06_insert_test_data.sql");
             DataAccess = new DataAccess(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString, ParameterFactory);
         }
 
         [TearDown]
         public void TearDown()
         {
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\06_reset_data.sql");
+            SqlCommandTypeDecider.dbObjects = null;
+            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\07_reset_data.sql");
         }
 
     }

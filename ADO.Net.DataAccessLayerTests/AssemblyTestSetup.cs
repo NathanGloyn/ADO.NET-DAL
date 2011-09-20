@@ -18,6 +18,7 @@ namespace ADO.Net.DataAccessLayerTests
             DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\02_create_tables.sql");
             DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\03_create_stored_procedures.sql");
             DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\04_create_views.sql");
+            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\05_create_test_schmea_and_objects.sql");
         }        
     }
 }
