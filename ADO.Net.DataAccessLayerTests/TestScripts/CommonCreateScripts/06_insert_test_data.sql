@@ -12,3 +12,5 @@ EXEC [dbo].[AddToTestTable] 'key4', 'value4'
 GO
 EXEC [dbo].[AddToTestTable] 'key5', 'value5'
 GO
+EXEC [TestSchema].[AddToTestSchemaTable] 'value1'
+GO

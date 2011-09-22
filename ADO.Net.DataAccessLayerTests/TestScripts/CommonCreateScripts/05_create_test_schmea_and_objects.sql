@@ -1,8 +1,20 @@
 ﻿USE [tempdb]
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[TestSchema].[TestSP]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [TestSchema].[TestSP]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[TestSchema].[ResetTestSchemaTable]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [TestSchema].[ResetTestSchemaTable]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[TestSchema].[AddToTestSchemaTable]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [TestSchema].[AddToTestSchemaTable]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[TestSchema].[SelectAllFromTestTable]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [TestSchema].[SelectAllFromTestTable]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[TestSchema].[SelectAllFromTestSchemaTable]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [TestSchema].[SelectAllFromTestSchemaTable]
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[TestSchema].[SchemaTesting]') AND type in (N'U'))
@@ -48,9 +60,44 @@ CREATE TABLE [TestSchema].[SchemaTesting]
 GO
 
 
-CREATE PROCEDURE [TestSchema].[TestSP]
+CREATE PROCEDURE [TestSchema].[SelectAllFromTestTable]
 AS
-	SELECT	* 
-	FROM	[TestSchema].[SchemaTesting]
+BEGIN
+	SET NOCOUNT ON;
 
+    SELECT Test 
+	FROM [TestSchema].[TestTable] 
+END
+GO
+
+CREATE PROCEDURE [TestSchema].[SelectAllFromTestSchemaTable]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT Test 
+	FROM [TestSchema].[TestTable] 
+END
+GO
+
+CREATE PROCEDURE [TestSchema].[AddToTestSchemaTable]
+	@TestValue varchar(100)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    INSERT INTO [TestSchema].[SchemaTesting]
+	  (test)
+	  VALUES
+	  (@TestValue)
+END
+GO
+
+CREATE PROCEDURE [TestSchema].[ResetTestSchemaTable]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    DELETE FROM [TestSchema].[SchemaTesting]
+END
 GO

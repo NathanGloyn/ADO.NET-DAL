@@ -1,4 +1,3 @@
-using System;
 using System.Configuration;
 using System.Data;
 using DataAccessLayer.SqlServer;
@@ -65,7 +64,7 @@ namespace ADO.Net.DataAccessLayerTests
         {
             SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
 
-            Assert.That(decider.GetCommandType("[TestSP]"), Is.EqualTo(CommandType.Text));            
+            Assert.That(decider.GetCommandType("[SelectAllFromTestSchemaTable]"), Is.EqualTo(CommandType.Text));            
         }
 
         [Test]
@@ -73,7 +72,7 @@ namespace ADO.Net.DataAccessLayerTests
         {
             SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringTestSchemaOwnerPermissions);
 
-            Assert.That(decider.GetCommandType("[TestSP]"), Is.EqualTo(CommandType.StoredProcedure));
+            Assert.That(decider.GetCommandType("[SelectAllFromTestSchemaTable]"), Is.EqualTo(CommandType.StoredProcedure));
         }
     }
 }

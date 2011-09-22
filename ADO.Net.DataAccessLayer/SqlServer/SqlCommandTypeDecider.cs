@@ -70,9 +70,14 @@ namespace DataAccessLayer.SqlServer
 
         private void ExtractSchemaDetail(SqlConnection connection, string collectionName, string columnName, CommandType type)
         {
-            foreach (DataRow row in connection.GetSchema(collectionName).Rows)
+            DataTable dt = connection.GetSchema(collectionName);
+
+            foreach (DataRow row in dt.Rows)
             {
-                dbObjects.Add(row[columnName].ToString(), type);
+                if (!dbObjects.ContainsKey(row[columnName].ToString()))
+                {
+                    dbObjects.Add(row[columnName].ToString(), type);
+                }
             }
         }
     }
