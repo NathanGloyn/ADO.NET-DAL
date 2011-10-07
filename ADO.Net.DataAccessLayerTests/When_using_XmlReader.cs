@@ -3,7 +3,7 @@ using System.Xml;
 using DataAccessLayer.SqlServer;
 using NUnit.Framework;
 
-namespace ADO.Net.DataAccessLayerTests
+namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 {
     [TestFixture]
     public class When_using_XmlReader:CommonTestSetup

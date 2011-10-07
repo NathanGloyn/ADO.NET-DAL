@@ -2,7 +2,7 @@ using System.Data;
 using System.Data.Common;
 using NUnit.Framework;
 
-namespace ADO.Net.DataAccessLayerTests
+namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 {
     public class When_executing_a_scalar_command:CommonTestSetup
     {

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.Net.DataAccessLayer", "ADO.Net.DataAccessLayer\ADO.Net.DataAccessLayer.csproj", "{3C792FE7-83CD-41C1-8B21-D72EECBB318D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.Net.DataAccessLayer_Tests", "ADO.Net.DataAccessLayerTests\ADO.Net.DataAccessLayer_Tests.csproj", "{86D0B79A-8DFC-4B50-9FC4-36141622FE19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.Net.DataAccessLayer.SqlServer.Tests", "ADO.Net.DataAccessLayerTests\ADO.Net.DataAccessLayer.SqlServer.Tests.csproj", "{86D0B79A-8DFC-4B50-9FC4-36141622FE19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

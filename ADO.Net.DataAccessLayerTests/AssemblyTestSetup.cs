@@ -2,7 +2,7 @@ using System.Configuration;
 using NUnit.Framework;
 using UnitTest.Database;
 
-namespace ADO.Net.DataAccessLayerTests
+namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 {
     [SetUpFixture]
     public class AssemblyTestSetup

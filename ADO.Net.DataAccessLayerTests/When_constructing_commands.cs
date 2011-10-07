@@ -1,11 +1,10 @@
 using System;
 using System.Data;
-using DataAccessLayer.Interfaces;
 using DataAccessLayer.SqlServer;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace ADO.Net.DataAccessLayerTests
+namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 {
     [TestFixture]
     public class When_constructing_commands

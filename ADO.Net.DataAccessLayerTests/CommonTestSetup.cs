@@ -3,7 +3,7 @@ using DataAccessLayer.SqlServer;
 using NUnit.Framework;
 using UnitTest.Database;
 
-namespace ADO.Net.DataAccessLayerTests
+namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 {
     public class CommonTestSetup
     {

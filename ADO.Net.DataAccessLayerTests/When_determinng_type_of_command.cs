@@ -3,7 +3,7 @@ using System.Data;
 using DataAccessLayer.SqlServer;
 using NUnit.Framework;
 
-namespace ADO.Net.DataAccessLayerTests
+namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 {
     [TestFixture]
     public class When_determinng_type_of_command:CommonTestSetup
@@ -74,5 +74,6 @@ namespace ADO.Net.DataAccessLayerTests
 
             Assert.That(decider.GetCommandType("[SelectAllFromTestSchemaTable]"), Is.EqualTo(CommandType.StoredProcedure));
         }
+
     }
 }

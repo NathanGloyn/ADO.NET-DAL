@@ -8,8 +8,8 @@
     <ProjectGuid>{86D0B79A-8DFC-4B50-9FC4-36141622FE19}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ADO.Net.DataAccessLayerTests</RootNamespace>
-    <AssemblyName>ADO.Net.DataAccessLayerTests</AssemblyName>
+    <RootNamespace>ADO.Net.DataAccessLayer.SqlServer.Tests</RootNamespace>
+    <AssemblyName>ADO.Net.DataAccessLayer.SqlServer.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>

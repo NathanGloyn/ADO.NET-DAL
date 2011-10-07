@@ -5,7 +5,7 @@ using NUnit.Framework;
 using System.Xml;
 
 
-namespace ADO.Net.DataAccessLayerTests
+namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 {
     [TestFixture]
     public class When_executing_XmlReader_command : CommonTestSetup

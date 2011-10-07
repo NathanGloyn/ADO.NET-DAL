@@ -1,7 +1,7 @@
 using System.Data;
 using NUnit.Framework;
 
-namespace ADO.Net.DataAccessLayerTests
+namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 {
     [TestFixture]
     public class When_using_transactions:CommonTestSetup

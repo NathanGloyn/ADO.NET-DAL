@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using DataAccessLayer.SqlServer;
 using NUnit.Framework;
 
-namespace ADO.Net.DataAccessLayerTests
+namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 {
     [TestFixture]
     class When_creating_Db_Parameters
