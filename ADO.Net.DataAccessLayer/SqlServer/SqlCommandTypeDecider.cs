@@ -1,11 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace DataAccessLayer.SqlServer
 {
     internal class SqlCommandTypeDecider
     {
+        internal static Regex regex = new Regex(
+      "((\\[?.*\\]?)(\\.))?(\\[?)(.*[^\\]])(\\]?)",
+    RegexOptions.CultureInvariant
+    | RegexOptions.Compiled
+    );
+
         internal static SortedList<string,CommandType> dbObjects;
         
         public SqlCommandTypeDecider(string connectionString)
@@ -19,17 +26,11 @@ namespace DataAccessLayer.SqlServer
 
         public CommandType GetCommandType(string commandText)
         {
-
-            if (commandText.Contains("["))
+            if (regex.IsMatch(commandText))
             {
-                commandText = commandText.Replace("[", "");
-                commandText = commandText.Replace("]", "");
-                return TryGetStoredProcedure(commandText);
-            }
+                MatchCollection matches = regex.Matches(commandText);
 
-            if (commandText.Split(' ', '\t').Length == 1)
-            {
-                return TryGetStoredProcedure(commandText);
+                return TryGetStoredProcedure(matches[matches.Count - 1].Value);                
             }
 
             return CommandType.Text;
@@ -37,6 +38,8 @@ namespace DataAccessLayer.SqlServer
 
         private CommandType TryGetStoredProcedure(string commandText)
         {
+            commandText = commandText.Replace("[", "");
+            commandText = commandText.Replace("]", "");
             if (dbObjects.ContainsKey(commandText))
             {
                 CommandType toReturn;
