@@ -84,7 +84,7 @@
     <Compile Include="SqlServer\DataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IConnection.cs" />
-    <Compile Include="SqlServer\SqlCommandTypeDecider.cs" />
+    <Compile Include="SqlServer\SqlCommandType.cs" />
     <Compile Include="SqlServer\SqlExtensions.cs" />
     <Compile Include="SqlServer\SqlParameterFactory.cs" />
     <Compile Include="Core\TransactionControl.cs" />

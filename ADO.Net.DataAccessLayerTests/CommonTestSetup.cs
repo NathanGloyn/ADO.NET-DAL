@@ -36,7 +36,7 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
         [TearDown]
         public void TearDown()
         {
-            SqlCommandTypeDecider.dbObjects = null;
+            SqlCommandType.dbObjects = null;
             DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\07_reset_data.sql");
         }
 

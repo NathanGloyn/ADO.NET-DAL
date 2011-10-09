@@ -1,21 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 
 namespace DataAccessLayer.SqlServer
 {
-    internal class SqlCommandTypeDecider
+    internal class SqlCommandType
     {
-        internal static Regex regex = new Regex(
-      "((\\[?.*\\]?)(\\.))?(\\[?)(.*[^\\]])(\\]?)",
-    RegexOptions.CultureInvariant
-    | RegexOptions.Compiled
-    );
-
         internal static SortedList<string,CommandType> dbObjects;
         
-        public SqlCommandTypeDecider(string connectionString)
+        public SqlCommandType(string connectionString)
         {
             if (dbObjects == null)
             {
@@ -24,13 +17,19 @@ namespace DataAccessLayer.SqlServer
             }
         }
 
-        public CommandType GetCommandType(string commandText)
+        public CommandType Get(string commandText)
         {
-            if (regex.IsMatch(commandText))
+            if (commandText.Contains("["))
             {
-                MatchCollection matches = regex.Matches(commandText);
+                if (commandText.LastIndexOf(']') == commandText.Length - 1)
+                {
+                    return TryGetStoredProcedure(commandText.Substring(commandText.LastIndexOf('[')));
+                }
+            }
 
-                return TryGetStoredProcedure(matches[matches.Count - 1].Value);                
+            if (commandText.Split(' ', '\t').Length == 1)
+            {
+                return TryGetStoredProcedure(commandText);
             }
 
             return CommandType.Text;

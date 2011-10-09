@@ -21,58 +21,66 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
         [Test]
         public void Should_return_type_as_Text_if_table_not_found()
         {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
+            SqlCommandType decider = new SqlCommandType(connectionStringMinPermissions);
 
-            Assert.That(decider.GetCommandType("MissingTable"), Is.EqualTo(CommandType.Text));            
+            Assert.That(decider.Get("MissingTable"), Is.EqualTo(CommandType.Text));            
         }
 
 
         [Test]
         public void Should_return_type_as_StoredProcedure_for_existng_procedure()
         {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
+            SqlCommandType decider = new SqlCommandType(connectionStringMinPermissions);
 
-            Assert.That(decider.GetCommandType("AddToTestTable"), Is.EqualTo(CommandType.StoredProcedure));
+            Assert.That(decider.Get("AddToTestTable"), Is.EqualTo(CommandType.StoredProcedure));
         }
 
         [Test]
         public void Should_return_type_as_Text_for_sql_string_with_space_between_keywords()
         {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(ConnectionString);
+            SqlCommandType decider = new SqlCommandType(ConnectionString);
 
-            Assert.That(decider.GetCommandType("SELECT * FROM TestTable"), Is.EqualTo(CommandType.Text));            
+            Assert.That(decider.Get("SELECT * FROM TestTable"), Is.EqualTo(CommandType.Text));            
         }
 
         [Test]
         public void Should_return_type_as_Text_for_sql_string_with_tab_between_keywords()
         {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(ConnectionString);
+            SqlCommandType decider = new SqlCommandType(ConnectionString);
 
-            Assert.That(decider.GetCommandType("SELECT\t*\tFROM\tTestTable"), Is.EqualTo(CommandType.Text));
+            Assert.That(decider.Get("SELECT\t*\tFROM\tTestTable"), Is.EqualTo(CommandType.Text));
         }
 
         [Test]
         public void Should_return_type_as_StoredProcedure_for_existng_procedure_with_space_in_name()
         {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
+            SqlCommandType decider = new SqlCommandType(connectionStringMinPermissions);
 
-            Assert.That(decider.GetCommandType("[Sproc with spaces in name]"), Is.EqualTo(CommandType.StoredProcedure));
+            Assert.That(decider.Get("[Sproc with spaces in name]"), Is.EqualTo(CommandType.StoredProcedure));
         }
 
         [Test]
         public void Should_not_return_StoredProcedure_when_procedure_is_in_another_schema_user_has_no_access_to()
         {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringMinPermissions);
+            SqlCommandType decider = new SqlCommandType(connectionStringMinPermissions);
 
-            Assert.That(decider.GetCommandType("[SelectAllFromTestSchemaTable]"), Is.EqualTo(CommandType.Text));            
+            Assert.That(decider.Get("[SelectAllFromTestSchemaTable]"), Is.EqualTo(CommandType.Text));            
         }
 
         [Test]
         public void Should_return_StoredProcedure_when_procedure_is_in_another_schema_user_access_to()
         {
-            SqlCommandTypeDecider decider = new SqlCommandTypeDecider(connectionStringTestSchemaOwnerPermissions);
+            SqlCommandType decider = new SqlCommandType(connectionStringTestSchemaOwnerPermissions);
 
-            Assert.That(decider.GetCommandType("[SelectAllFromTestSchemaTable]"), Is.EqualTo(CommandType.StoredProcedure));
+            Assert.That(decider.Get("[SelectAllFromTestSchemaTable]"), Is.EqualTo(CommandType.StoredProcedure));
+        }
+
+        [Test]
+        public void Should_return_type_as_text_when_commandText_includes_table_with_square_brackets()
+        {
+            SqlCommandType decider = new SqlCommandType(connectionStringTestSchemaOwnerPermissions);
+
+            Assert.That(decider.Get("SELECT * FROM [TestTable]"), Is.EqualTo(CommandType.Text));   
         }
 
     }

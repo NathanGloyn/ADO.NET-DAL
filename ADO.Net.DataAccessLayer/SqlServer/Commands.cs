@@ -12,7 +12,7 @@ namespace DataAccessLayer.SqlServer
         private readonly SqlTransaction currentTransaction;
         private readonly IConnection currentConnection;
         private readonly int commandTimeOut;
-        private readonly SqlCommandTypeDecider decider;
+        private readonly SqlCommandType decider;
 
         internal Commands(IConnection currentConnection, IDbTransaction currentTransaction, int commandTimeOut)
         {
@@ -21,7 +21,7 @@ namespace DataAccessLayer.SqlServer
             this.currentTransaction = currentTransaction as SqlTransaction;
             this.currentConnection = currentConnection;
             this.commandTimeOut = commandTimeOut;
-            this.decider = new SqlCommandTypeDecider(this.currentConnection.ConnectionString);
+            this.decider = new SqlCommandType(this.currentConnection.ConnectionString);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace DataAccessLayer.SqlServer
 
             using (SqlCommand cmdReader = new SqlCommand(commandText, (SqlConnection)currentConnection.DatabaseConnection))
             {
-                cmdReader.CommandType = decider.GetCommandType(commandText);
+                cmdReader.CommandType = decider.Get(commandText);
                 cmdReader.Transaction = currentTransaction;
 
                 if (parameters != null && parameters.Length > 0)
@@ -241,7 +241,7 @@ namespace DataAccessLayer.SqlServer
             SqlCommand newCommand = new SqlCommand(commandText, (SqlConnection) currentConnection.DatabaseConnection)
             {
                 Transaction = currentTransaction,
-                CommandType = decider.GetCommandType(commandText)
+                CommandType = decider.Get(commandText)
             };
 
             if (commandTimeOut > 0)
