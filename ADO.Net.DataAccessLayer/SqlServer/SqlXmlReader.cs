@@ -12,8 +12,8 @@ namespace DataAccessLayer.SqlServer
     /// the connection separately</remarks>
     public class SqlXmlReader : XmlReader
     {
-        private SqlConnection connection;
-        private XmlReader reader;
+        private readonly SqlConnection connection;
+        private readonly XmlReader reader;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlXmlReader"/> class.
@@ -23,8 +23,8 @@ namespace DataAccessLayer.SqlServer
         {
             if (cmd == null)
                 throw new ArgumentNullException("cmd");
-            this.connection = cmd.Connection;
-            this.reader = cmd.ExecuteXmlReader();
+            connection = cmd.Connection;
+            reader = cmd.ExecuteXmlReader();
         }
 
         /// <summary>

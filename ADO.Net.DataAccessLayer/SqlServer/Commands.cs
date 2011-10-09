@@ -12,7 +12,7 @@ namespace DataAccessLayer.SqlServer
         private readonly SqlTransaction currentTransaction;
         private readonly IConnection currentConnection;
         private readonly int commandTimeOut;
-        private readonly SqlCommandType decider;
+        private readonly SqlCommandType commandTypeToUse;
 
         internal Commands(IConnection currentConnection, IDbTransaction currentTransaction, int commandTimeOut)
         {
@@ -21,14 +21,14 @@ namespace DataAccessLayer.SqlServer
             this.currentTransaction = currentTransaction as SqlTransaction;
             this.currentConnection = currentConnection;
             this.commandTimeOut = commandTimeOut;
-            this.decider = new SqlCommandType(this.currentConnection.ConnectionString);
+            commandTypeToUse = new SqlCommandType(this.currentConnection.ConnectionString);
         }
 
         /// <summary>
         /// Executes a command that does not return a query
         /// </summary>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">DbParameter colleciton to use in executing</param>
+        /// <param name="parameters">DbParameter collection to use in executing</param>
         public int ExecuteNonQuery(string commandText, params DbParameter[] parameters)
         {
             return Execute(x => x.ExecuteNonQuery(),  commandText, parameters);
@@ -39,7 +39,7 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         /// <param name="cmd">Output parameter that holds reference to the command object just executed</param>/// 
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">DbParameter colleciton to use in executing</param>
+        /// <param name="parameters">DbParameter collection to use in executing</param>
         /// <returns>DbCommand containing the command executed</returns>
         public int ExecuteNonQuery(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
@@ -50,7 +50,7 @@ namespace DataAccessLayer.SqlServer
         /// Executes a command that returns a single value
         /// </summary>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">DbParameter colleciton to use in executing</param>
+        /// <param name="parameters">DbParameter collection to use in executing</param>
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(string commandText, params DbParameter[] parameters)
         {
@@ -62,7 +62,7 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         /// <param name="cmd">Output parameter that holds reference to the command object just executed</param>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">DbParameter colleciton to use in executing</param>
+        /// <param name="parameters">DbParameter collection to use in executing</param>
         /// <returns>Object holding result of execution of database</returns>
         public object ExecuteScalar(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
@@ -73,23 +73,23 @@ namespace DataAccessLayer.SqlServer
         /// Executes a command and returns a data reader
         /// </summary>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">DbParameter colleciton to use in executing</param>
+        /// <param name="parameters">DbParameter collection to use in executing</param>
         /// <returns>SqlDataReader allowing access to results from command</returns>
         public DbDataReader ExecuteReader(string commandText, params DbParameter[] parameters)
         {
-            SqlDataReader reader = null;
+            SqlDataReader reader;
 
             currentConnection.Open();
 
-            using (SqlCommand cmdReader = new SqlCommand(commandText, (SqlConnection)currentConnection.DatabaseConnection))
+            using (SqlCommand readerCommand = new SqlCommand(commandText, (SqlConnection)currentConnection.DatabaseConnection))
             {
-                cmdReader.CommandType = decider.Get(commandText);
-                cmdReader.Transaction = currentTransaction;
+                readerCommand.CommandType = commandTypeToUse.Get(commandText);
+                readerCommand.Transaction = currentTransaction;
 
                 if (parameters != null && parameters.Length > 0)
-                    cmdReader.Parameters.AddRange(parameters);
+                    readerCommand.Parameters.AddRange(parameters);
 
-                reader = cmdReader.ExecuteReader(CommandBehavior.CloseConnection);
+                reader = readerCommand.ExecuteReader(CommandBehavior.CloseConnection);
             }
 
             return reader;
@@ -99,7 +99,7 @@ namespace DataAccessLayer.SqlServer
         /// Executes a command and returns a DataTable
         /// </summary>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">DbParameter colleciton to use in executing</param>
+        /// <param name="parameters">DbParameter collection to use in executing</param>
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataTable ExecuteDataTable(string commandText, params DbParameter[] parameters)
         {
@@ -123,7 +123,7 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         /// <param name="cmd">Output parameter that holds reference to the command object just executed</param>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">SqlParameter colleciton to use in executing</param>
+        /// <param name="parameters">SqlParameter collection to use in executing</param>
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataTable ExecuteDataTable(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
@@ -153,7 +153,7 @@ namespace DataAccessLayer.SqlServer
         /// Executes a command and returns a DataTable
         /// </summary>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">SqlParameter colleciton to use in executing</param>
+        /// <param name="parameters">SqlParameter collection to use in executing</param>
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataSet ExecuteDataSet(string commandText, params DbParameter[] parameters)
         {
@@ -170,7 +170,7 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         /// <param name="cmd">Output parameter that holds reference to the command object just executed</param>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">SqlParameter colleciton to use in executing</param>
+        /// <param name="parameters">SqlParameter collection to use in executing</param>
         /// <returns>DataTable populated with data from executing stored procedure</returns>
         public DataSet ExecuteDataSet(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
@@ -201,7 +201,7 @@ namespace DataAccessLayer.SqlServer
         /// Executes a command and returns an XML reader.
         /// </summary>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">SqlParameter colleciton to use in executing</param>
+        /// <param name="parameters">SqlParameter collection to use in executing</param>
         /// <returns>An instance of XmlReader pointing to the stream of xml returned</returns>
         public XmlReader ExecuteXmlReader(string commandText, params DbParameter[] parameters)
         {
@@ -218,7 +218,7 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         /// <param name="cmd">Output parameter that holds reference to the command object just executed</param>
         /// <param name="commandText">Name of stored procedure to execute</param>
-        /// <param name="parameters">DbParameter colleciton to use in executing</param>
+        /// <param name="parameters">DbParameter collection to use in executing</param>
         /// <returns>An instance of XmlReader pointing to the stream of xml returned</returns>
         public XmlReader ExecuteXmlReader(out DbCommand cmd, string commandText, params DbParameter[] parameters)
         {
@@ -241,7 +241,7 @@ namespace DataAccessLayer.SqlServer
             SqlCommand newCommand = new SqlCommand(commandText, (SqlConnection) currentConnection.DatabaseConnection)
             {
                 Transaction = currentTransaction,
-                CommandType = decider.Get(commandText)
+                CommandType = commandTypeToUse.Get(commandText)
             };
 
             if (commandTimeOut > 0)
