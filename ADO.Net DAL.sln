@@ -24,6 +24,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NDepend) = preSolution
-		Project = ".\ADO.Net DAL.ndproj"
+		Project = ""
 	EndGlobalSection
 EndGlobal
