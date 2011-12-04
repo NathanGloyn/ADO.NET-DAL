@@ -1,4 +1,5 @@
 using System.Configuration;
+using DataAccessLayer.Core;
 using DataAccessLayer.SqlServer;
 using NUnit.Framework;
 using UnitTest.Database;

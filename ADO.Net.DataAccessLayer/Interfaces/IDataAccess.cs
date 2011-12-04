@@ -14,7 +14,7 @@ namespace DataAccessLayer.Interfaces
         /// </summary>
         int CommandTimeOut { get; set; }
 
-        IParameterCreation ParameterFactory { get; }
+        IParameterCreation ParameterFactory { get; set; }
         ITransactionControl Transactions { get; }
 
 

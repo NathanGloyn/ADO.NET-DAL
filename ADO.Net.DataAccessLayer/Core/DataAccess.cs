@@ -2,10 +2,10 @@
 using System.Data.Common;
 using System.Data;
 using System.Xml;
-using DataAccessLayer.Core;
 using DataAccessLayer.Interfaces;
+using DataAccessLayer.SqlServer;
 
-namespace DataAccessLayer.SqlServer
+namespace DataAccessLayer.Core
 {
     /// <summary>
     /// Concrete facade hiding actual database interaction
@@ -13,9 +13,8 @@ namespace DataAccessLayer.SqlServer
     public class DataAccess : IDataAccess
     {
         private readonly IConnection connection;
-        private readonly IParameterCreation parameterFactory;
         private readonly ITransactionControl transactionControl;
-        
+
         /// <summary>
         /// Allows child classes to pass the connection string to be used for the
         /// connection during construction
@@ -27,7 +26,7 @@ namespace DataAccessLayer.SqlServer
             if (parameterFactory == null) throw new ArgumentNullException("parameterFactory");
 
             connection = new Connection(connectionString);
-            this.parameterFactory = parameterFactory;
+            ParameterFactory = parameterFactory;
             transactionControl = new TransactionControl(connection);
         }
 
@@ -36,10 +35,7 @@ namespace DataAccessLayer.SqlServer
         /// </summary>
         public int CommandTimeOut { get; set; }
 
-        public IParameterCreation ParameterFactory
-        {
-            get { return parameterFactory; }
-        }
+        public IParameterCreation ParameterFactory { get; set; }
 
         /// <summary>
         /// Provides access to the Transaction control object

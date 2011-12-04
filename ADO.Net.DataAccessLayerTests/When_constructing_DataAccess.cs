@@ -1,4 +1,5 @@
 using System;
+using DataAccessLayer.Core;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.SqlServer;
 using NSubstitute;
