@@ -14,19 +14,18 @@ namespace DataAccessLayer.Core
     {
         private readonly IConnection connection;
         private readonly ITransactionControl transactionControl;
+        private IParameterCreation parameterFactory;
 
         /// <summary>
         /// Allows child classes to pass the connection string to be used for the
         /// connection during construction
         /// </summary>
         /// <param name="connectionString"></param>
-        public DataAccess(string connectionString, IParameterCreation parameterFactory)
+        public DataAccess(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString)) throw new ArgumentNullException("connectionString");
-            if (parameterFactory == null) throw new ArgumentNullException("parameterFactory");
 
             connection = new Connection(connectionString);
-            ParameterFactory = parameterFactory;
             transactionControl = new TransactionControl(connection);
         }
 
@@ -35,7 +34,18 @@ namespace DataAccessLayer.Core
         /// </summary>
         public int CommandTimeOut { get; set; }
 
-        public IParameterCreation ParameterFactory { get; set; }
+       
+        public IParameterCreation ParameterFactory
+        {
+            get
+            {
+                if (parameterFactory == null)
+                    parameterFactory = new SqlParameterFactory();
+
+                return parameterFactory;
+            }
+            set { parameterFactory = value; }
+        }
 
         /// <summary>
         /// Provides access to the Transaction control object

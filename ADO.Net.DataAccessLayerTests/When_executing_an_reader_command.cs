@@ -85,7 +85,7 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 
             for (int i = 0; i < 1000; i++)
             {
-                sqlDataAccessList.Add(new DataAccess(connectionString, ParameterFactory));
+                sqlDataAccessList.Add(new DataAccess(connectionString));
             }
 
             try

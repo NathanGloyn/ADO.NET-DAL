@@ -31,7 +31,8 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
         public void Setup()
         {
             DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\06_insert_test_data.sql");
-            DataAccess = new DataAccess(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString, ParameterFactory);
+            DataAccess = new DataAccess(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString);
+            DataAccess.ParameterFactory = ParameterFactory;
         }
 
         [TearDown]
