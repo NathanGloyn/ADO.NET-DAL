@@ -83,5 +83,11 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
             Assert.That(decider.Get("SELECT * FROM [TestTable]"), Is.EqualTo(CommandType.Text));   
         }
 
+        [Test]
+        public void Should_return_type_as_StoredProcedure_when_name_is_wrong_case()
+        {
+            SqlCommandType decider = new SqlCommandType(connectionStringMinPermissions);
+            Assert.That(decider.Get("addtotesttable"), Is.EqualTo(CommandType.StoredProcedure));
+        }
     }
 }

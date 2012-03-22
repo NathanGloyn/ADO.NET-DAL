@@ -39,11 +39,11 @@ namespace DataAccessLayer.SqlServer
         {
             commandText = commandText.Replace("[", "");
             commandText = commandText.Replace("]", "");
-            if (dbObjects.ContainsKey(commandText))
+            if (dbObjects.ContainsKey(commandText.ToLowerInvariant()))
             {
                 CommandType toReturn;
 
-                dbObjects.TryGetValue(commandText, out toReturn);
+                dbObjects.TryGetValue(commandText.ToLowerInvariant(), out toReturn);
 
                 return toReturn;
             }
@@ -76,9 +76,9 @@ namespace DataAccessLayer.SqlServer
 
             foreach (DataRow row in dt.Rows)
             {
-                if (!dbObjects.ContainsKey(row[columnName].ToString()))
+                if (!dbObjects.ContainsKey(row[columnName].ToString().ToLowerInvariant()))
                 {
-                    dbObjects.Add(row[columnName].ToString(), type);
+                    dbObjects.Add(row[columnName].ToString().ToLowerInvariant(), type);
                 }
             }
         }
