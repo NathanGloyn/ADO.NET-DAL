@@ -10,6 +10,7 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
     {
         protected const string ConnectionName = "sqlTest";
         protected static DatabaseSupport DbHelper;
+        public ScriptRunner scriptRunner;
 
         protected string ConnectionString;
         protected SqlParameterFactory ParameterFactory;
@@ -17,7 +18,7 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 
         public CommonTestSetup()
         {
-           DbHelper = new DatabaseSupport(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString);
+            scriptRunner = ScriptRunner.Get(ConnectionName);
         }
 
         [TestFixtureSetUp]
@@ -30,7 +31,7 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
         [SetUp]
         public void Setup()
         {
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\06_insert_test_data.sql");
+            scriptRunner.Run(@"..\..\TestScripts\CommonCreateScripts\06_insert_test_data.sql");
             DataAccess = new DataAccess(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString);
             DataAccess.ParameterFactory = ParameterFactory;
         }
@@ -38,8 +39,8 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
         [TearDown]
         public void TearDown()
         {
-            SqlCommandType.dbObjects = null;
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\07_reset_data.sql");
+            SqlCommandType.cacheData = null;
+            scriptRunner.Run(@"..\..\TestScripts\CommonCreateScripts\07_reset_data.sql");
         }
 
     }

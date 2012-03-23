@@ -1,6 +1,4 @@
-using System.Configuration;
 using NUnit.Framework;
-using UnitTest.Database;
 
 namespace ADO.Net.DataAccessLayer.SqlServer.Tests
 {
@@ -12,13 +10,13 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
         [SetUp]
         public void Initalize()
         {
-            DatabaseSupport DbHelper = new DatabaseSupport(ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString);
+            ScriptRunner scriptRunner = ScriptRunner.Get(ConnectionName);
 
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\01_create_login_and_user.sql");
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\02_create_tables.sql");
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\03_create_stored_procedures.sql");
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\04_create_views.sql");
-            DbHelper.RunScript(@"..\..\TestScripts\CommonCreateScripts\05_create_test_schmea_and_objects.sql");
+            scriptRunner.Run(@"..\..\TestScripts\CommonCreateScripts\01_create_login_and_user.sql");
+            scriptRunner.Run(@"..\..\TestScripts\CommonCreateScripts\02_create_tables.sql");
+            scriptRunner.Run(@"..\..\TestScripts\CommonCreateScripts\03_create_stored_procedures.sql");
+            scriptRunner.Run(@"..\..\TestScripts\CommonCreateScripts\04_create_views.sql");
+            scriptRunner.Run(@"..\..\TestScripts\CommonCreateScripts\05_create_test_schmea_and_objects.sql");
         }        
     }
 }

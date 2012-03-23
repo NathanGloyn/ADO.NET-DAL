@@ -1,3 +1,4 @@
+using System;
 using System.Configuration;
 using System.Data;
 using DataAccessLayer.SqlServer;
@@ -10,11 +11,13 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
     {
         private string connectionStringMinPermissions;
         private string connectionStringTestSchemaOwnerPermissions;
+        private string connectionStringAdditionalDb;
 
         public When_determinng_type_of_command()
         {
             connectionStringMinPermissions = ConfigurationManager.ConnectionStrings["MinPermission"].ConnectionString;
             connectionStringTestSchemaOwnerPermissions = ConfigurationManager.ConnectionStrings["TestSchemaOwnerPermission"].ConnectionString;
+            //connectionStringAdditionalDb = ConfigurationManager.ConnectionStrings["AdditionalDb"].ConnectionString;
         }
 
 
@@ -88,6 +91,33 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
         {
             SqlCommandType decider = new SqlCommandType(connectionStringMinPermissions);
             Assert.That(decider.Get("addtotesttable"), Is.EqualTo(CommandType.StoredProcedure));
+        }
+
+        [Test]
+        public void Should_return_type_as_StoredProcedure_when_it_is_in_2nd_database_to_be_accessed()
+        {
+            ScriptRunner runner = ScriptRunner.Get(connectionStringAdditionalDb);
+            
+            runner.Run(@"..\..\TestScripts\ExtraDB\01_Create_schema.sql");
+
+            // Create decider to ensure population of db object cache
+            SqlCommandType decider = new SqlCommandType(connectionStringMinPermissions);
+            decider = new SqlCommandType(connectionStringAdditionalDb);
+
+            CommandType actual = CommandType.Text;
+
+            try
+            {
+                actual = decider.Get("[SelectFromTestTableAdditional]");
+            }
+            catch (Exception)
+            {
+                runner.Run(@"..\..\TestScripts\ExtraDB\02_Drop_database.sql");
+            }
+
+            Assert.That(actual, Is.EqualTo(CommandType.StoredProcedure));
+
+
         }
     }
 }

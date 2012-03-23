@@ -6,15 +6,16 @@ namespace DataAccessLayer.SqlServer
 {
     internal class SqlCommandType
     {
-        internal static SortedList<string,CommandType> dbObjects;
-        
+        internal SortedList<string,CommandType> dbObjects;
+        internal static Dictionary<string, SortedList<string, CommandType>> cacheData;
+
+
         public SqlCommandType(string connectionString)
         {
-            if (dbObjects == null)
-            {
-                dbObjects = new SortedList<string, CommandType>();
+            dbObjects = GetCachedObjectForDB(connectionString);
+
+            if(dbObjects == null)
                 PopulateCacheData(connectionString);
-            }
         }
 
         public CommandType Get(string commandText)
@@ -39,7 +40,9 @@ namespace DataAccessLayer.SqlServer
         {
             commandText = commandText.Replace("[", "");
             commandText = commandText.Replace("]", "");
-            if (dbObjects.ContainsKey(commandText.ToLowerInvariant()))
+            commandText = commandText.ToLowerInvariant();
+
+            if (dbObjects.ContainsKey(commandText))
             {
                 CommandType toReturn;
 
@@ -54,6 +57,9 @@ namespace DataAccessLayer.SqlServer
 
         private void PopulateCacheData(string connectionString)
         {
+            if(cacheData == null)
+                cacheData = new Dictionary<string, SortedList<string, CommandType>>();
+
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -62,6 +68,7 @@ namespace DataAccessLayer.SqlServer
                 {
                     RetrieveStoredProcedures(connection);
                 }
+
             }
         }
 
@@ -74,6 +81,9 @@ namespace DataAccessLayer.SqlServer
         {
             DataTable dt = connection.GetSchema(collectionName);
 
+            dbObjects = new SortedList<string, CommandType>();
+            cacheData.Add(connection.ConnectionString, dbObjects);
+
             foreach (DataRow row in dt.Rows)
             {
                 if (!dbObjects.ContainsKey(row[columnName].ToString().ToLowerInvariant()))
@@ -81,6 +91,18 @@ namespace DataAccessLayer.SqlServer
                     dbObjects.Add(row[columnName].ToString().ToLowerInvariant(), type);
                 }
             }
+        }
+
+        private static SortedList<string, CommandType> GetCachedObjectForDB(string connectionString)
+        {
+            SortedList<string, CommandType> currentDbObjects = null;
+
+            if (cacheData != null && cacheData.ContainsKey(connectionString))
+            {
+                cacheData.TryGetValue(connectionString, out currentDbObjects);
+            }
+
+            return currentDbObjects;
         }
     }
 }
