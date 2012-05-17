@@ -28,3 +28,6 @@ _ReSharper*/
 NDepend*/
 *.ndproj
 packages/
+*.ncrunchsolution
+!*nuget
+!NuGet.exe
