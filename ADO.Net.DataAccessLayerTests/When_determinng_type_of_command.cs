@@ -17,7 +17,7 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
         {
             connectionStringMinPermissions = ConfigurationManager.ConnectionStrings["MinPermission"].ConnectionString;
             connectionStringTestSchemaOwnerPermissions = ConfigurationManager.ConnectionStrings["TestSchemaOwnerPermission"].ConnectionString;
-            //connectionStringAdditionalDb = ConfigurationManager.ConnectionStrings["AdditionalDb"].ConnectionString;
+            connectionStringAdditionalDb = ConfigurationManager.ConnectionStrings["AdditionalDb"].ConnectionString;
         }
 
 
@@ -96,8 +96,8 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
         [Test]
         public void Should_return_type_as_StoredProcedure_when_it_is_in_2nd_database_to_be_accessed()
         {
-            ScriptRunner runner = ScriptRunner.Get(connectionStringAdditionalDb);
-            
+            ScriptRunner runner = ScriptRunner.Get("sqlTest");
+
             runner.Run(@"..\..\TestScripts\ExtraDB\01_Create_schema.sql");
 
             // Create decider to ensure population of db object cache
