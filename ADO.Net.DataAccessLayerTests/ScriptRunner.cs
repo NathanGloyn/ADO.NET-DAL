@@ -25,9 +25,14 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
             DbHelper.RunScript(script);
         }
 
-        public void CreateDb(string scriptLocation)
+        public void CreateDb(string name)
         {
-            DbHelper.RecreateDbSchema(scriptLocation);
+            DbHelper.CreateDB(name);
+        }
+
+        public void DropDb(string name)
+        {
+            DbHelper.DropDB(name);
         }
     }
 }

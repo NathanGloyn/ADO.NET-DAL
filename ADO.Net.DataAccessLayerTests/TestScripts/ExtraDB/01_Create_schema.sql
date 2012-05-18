@@ -8,13 +8,6 @@ GO
 CREATE LOGIN [AdditionalDBUser] WITH PASSWORD=N'password', DEFAULT_DATABASE=[master], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 GO
 
-IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'AdditionalDB')
-DROP DATABASE [AdditionalDB]
-GO
-
-CREATE Database AdditionalDB
-GO
-
 USE [AdditionalDB]
 GO
 
