@@ -82,6 +82,7 @@
     <Compile Include="When_creating_Db_Parameters.cs" />
     <Compile Include="When_using_transactions.cs" />
     <Compile Include="When_using_XmlReader.cs" />
+    <Compile Include="When_working_with_multiple_databases.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestScripts\CommonCreateScripts\02_create_tables.sql" />

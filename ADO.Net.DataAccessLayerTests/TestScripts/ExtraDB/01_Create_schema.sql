@@ -52,11 +52,11 @@ GO
 GRANT EXECUTE On [dbo].[AddToTestTable] TO [AdditionalDBUser] 
 GO
 
-IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectFromTestTableAdditional')
-	DROP PROCEDURE [dbo].[SelectFromTestTableAdditional]
+IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectFromTestTable')
+	DROP PROCEDURE [dbo].[SelectFromTestTable]
 GO
 
-CREATE PROCEDURE [dbo].[SelectFromTestTableAdditional]
+CREATE PROCEDURE [dbo].[SelectFromTestTable]
 	@TestKey varchar(100)
 AS
 BEGIN
@@ -66,5 +66,21 @@ BEGIN
 END
 GO
 
-GRANT EXECUTE On [dbo].[SelectFromTestTableAdditional] TO [AdditionalDBUser] 
+GRANT EXECUTE On [dbo].[SelectFromTestTable] TO [AdditionalDBUser] 
+GO
+
+IF EXISTS (SELECT * FROM sysobjects WHERE xtype = 'P' AND name = 'SelectAllFromTestTableAdditional')
+	DROP PROCEDURE [dbo].[SelectAllFromTestTableAdditional]
+GO
+
+CREATE PROCEDURE [dbo].[SelectAllFromTestTableAdditional]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT TestValue FROM [dbo].[TestTable] 
+END
+GO
+
+GRANT EXECUTE On [dbo].[SelectAllFromTestTableAdditional] TO [AdditionalDBUser] 
 GO
