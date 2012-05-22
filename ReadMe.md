@@ -11,6 +11,9 @@ This is assembly is one of my "ToolBelt" pieces of code that I've had knocking a
 I decided to dust it off, update it and then put it on GitHub so I always have access to it and if other
 people find it useful they can use it as well.  
 
-##If you want to run the code
+##Using SQL Express
 
-If you download the code you will need to user NuGet to get NUnit otherwise the solution will not build
+If you are using SQL Express you'll need to do a couple of things
+ - ensure SQL Express is in **mixed mode authentication**
+ - alter the connection strings to point to your SQL Express instance rather than LocalHost
+
