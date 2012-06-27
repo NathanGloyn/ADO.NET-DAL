@@ -17,3 +17,7 @@ If you are using SQL Express you'll need to do a couple of things
  - ensure SQL Express is in **mixed mode authentication**
  - alter the connection strings to point to your SQL Express instance rather than LocalHost
 
+
+###Licence
+This software is licensed under the MIT license which basically means you can do what you want
+with the software (read the license.txt for full details).
