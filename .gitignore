@@ -31,3 +31,4 @@ packages/
 *.ncrunchsolution
 !*nuget
 !NuGet.exe
+*.DotSettings
