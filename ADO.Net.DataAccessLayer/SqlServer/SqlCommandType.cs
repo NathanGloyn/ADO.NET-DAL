@@ -66,23 +66,23 @@ namespace DataAccessLayer.SqlServer
                 object lockObject = new object();
                 lock (lockObject)
                 {
-                    RetrieveStoredProcedures(connection);
+                    RetrieveStoredProcedures(connectionString, connection);
                 }
 
             }
         }
 
-        private void RetrieveStoredProcedures(SqlConnection connection)
+        private void RetrieveStoredProcedures(string connectionString, SqlConnection connection)
         {
-            ExtractSchemaDetail(connection, "Procedures", "specific_name", CommandType.StoredProcedure);
+            ExtractSchemaDetail(connectionString, connection, "Procedures", "specific_name", CommandType.StoredProcedure);
         }
 
-        private void ExtractSchemaDetail(SqlConnection connection, string collectionName, string columnName, CommandType type)
+        private void ExtractSchemaDetail(string connectionString, SqlConnection connection, string collectionName, string columnName, CommandType type)
         {
             DataTable dt = connection.GetSchema(collectionName);
 
             dbObjects = new SortedList<string, CommandType>();
-            cacheData.Add(connection.ConnectionString, dbObjects);
+            cacheData.Add(connectionString, dbObjects);
 
             foreach (DataRow row in dt.Rows)
             {

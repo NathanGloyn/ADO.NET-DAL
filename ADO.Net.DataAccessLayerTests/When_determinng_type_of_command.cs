@@ -1,6 +1,7 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 using DataAccessLayer.SqlServer;
 using NUnit.Framework;
 
@@ -89,6 +90,18 @@ namespace ADO.Net.DataAccessLayer.SqlServer.Tests
         {
             SqlCommandType decider = new SqlCommandType(connectionStringMinPermissions);
             Assert.That(decider.Get("addtotesttable"), Is.EqualTo(CommandType.StoredProcedure));
+        }
+
+        [Test]
+        public void Should_store_schema_data_for_connection_using_connection_string_as_a_key()
+        {
+            if(SqlCommandType.cacheData != null)
+                SqlCommandType.cacheData.Clear();
+
+            SqlCommandType decider = new SqlCommandType(connectionStringMinPermissions);
+            decider.Get("[SelectAllFromTestSchemaTable]");
+
+            Assert.That(SqlCommandType.cacheData.Keys.First(), Is.EqualTo(connectionStringMinPermissions));
         }
     }
 }
