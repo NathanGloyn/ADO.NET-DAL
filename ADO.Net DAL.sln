@@ -1,16 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.Net.DataAccessLayer", "ADO.Net.DataAccessLayer\ADO.Net.DataAccessLayer.csproj", "{3C792FE7-83CD-41C1-8B21-D72EECBB318D}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.Net.DataAccessLayer_3.5", "ADO.Net.DataAccessLayer_3.5\ADO.Net.DataAccessLayer_3.5.csproj", "{3C792FE7-83CD-41C1-8B21-D72EECBB318D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.Net.DataAccessLayer.SqlServer.Tests", "ADO.Net.DataAccessLayerTests\ADO.Net.DataAccessLayer.SqlServer.Tests.csproj", "{86D0B79A-8DFC-4B50-9FC4-36141622FE19}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2B7E9E1C-804A-442E-8D1B-328AF27B242E}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F0BE8CBD-31DD-4E5A-A23B-2B96A5B2B97D}"
 	ProjectSection(SolutionItems) = preProject
