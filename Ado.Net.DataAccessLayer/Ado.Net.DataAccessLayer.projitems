@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ab35a405-3fc6-42c8-b368-c892770376a8</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DataAccessLayer</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Core\DataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\TransactionControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICommands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IParameterCreation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISqlCommands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITransactionControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITransactions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SqlServer\Commands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SqlServer\Connection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SqlServer\SqlCommands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SqlServer\SqlCommandType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SqlServer\SqlExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SqlServer\SqlParameterFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SqlServer\SqlXmlReader.cs" />
+  </ItemGroup>
+</Project>

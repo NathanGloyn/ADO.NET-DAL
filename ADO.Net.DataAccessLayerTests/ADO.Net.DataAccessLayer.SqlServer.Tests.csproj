@@ -101,12 +101,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ADO.Net.DataAccessLayer_3.5\ADO.Net.DataAccessLayer_3.5.csproj">
-      <Project>{3C792FE7-83CD-41C1-8B21-D72EECBB318D}</Project>
-      <Name>ADO.Net.DataAccessLayer_3.5</Name>
+    <ProjectReference Include="..\ADO.Net.DataAccessLayer_4.5\ADO.Net.DataAccessLayer_4.5.csproj">
+      <Project>{0b25ea8d-2e2b-4b30-8a39-95a36c665c4e}</Project>
+      <Name>ADO.Net.DataAccessLayer_4.5</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
